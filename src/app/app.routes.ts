@@ -16,25 +16,21 @@ export const routes: Routes = [
       {
         path: 'about',
         loadChildren: () =>
-          import('./modules/about/components/about/about.component').then(
-            (c) => c.AboutComponent
-          ),
+          import('./modules/about/about.module').then((c) => c.AboutModule),
       },
       {
         path: 'proj',
         loadChildren: () =>
-          import(
-            './modules/projects/components/projects/projects.component'
-          ).then((c) => c.ProjectsComponent),
+          import('./modules/projects/projects.module').then(
+            (c) => c.ProjectsModule
+          ),
       },
     ],
   },
   {
     path: 'more',
     loadChildren: () =>
-      import('./modules/more/components/more/more.component').then(
-        (c) => c.MoreComponent
-      ),
+      import('./modules/more/more.module').then((c) => c.MoreModule),
     // children: [],
   },
   {

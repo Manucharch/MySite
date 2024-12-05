@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-more',
-  imports: [],
+  standalone: false,
   templateUrl: './more.component.html',
   styleUrl: './more.component.scss',
 })
