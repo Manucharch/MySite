@@ -1,5 +1,11 @@
 {
   "main": {
     "title": "WebKey"
+  },
+
+  "title": {
+    "home": "Home Page",
+    "about": "About Us",
+    "projects": "Projects"
   }
 }

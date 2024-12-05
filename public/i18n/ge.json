@@ -1,5 +1,11 @@
 {
   "main": {
     "title": "ვებკეი"
+  },
+
+  "title": {
+    "home": "Home Page 22222",
+    "about": "About Us 44444444",
+    "projects": "Projects 55555555"
   }
 }

@@ -11,7 +11,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   constructor(public translate: TranslateService) {
-    translate.use(localStorage.getItem('language') || 'en');
+    translate.use(localStorage.getItem('language') || 'ge');
   }
 
   title = 'MySite';
