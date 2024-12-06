@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { TitleService } from '../../../../services/title.service';
 
 @Component({
   selector: 'app-projects',
@@ -9,14 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './projects.component.scss',
 })
 export class ProjectsComponent implements OnInit {
-  constructor(
-    private titleService: Title,
-    private translateService: TranslateService
-  ) {}
+  constructor(private titleSrvice: TitleService) {}
 
-  ngOnInit(): void {
-    this.translateService.get('title.projects').subscribe((title) => {
-      this.titleService.setTitle(title);
-    });
-  }
+  ngOnInit(): void {}
 }

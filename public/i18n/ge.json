@@ -1,11 +1,15 @@
 {
-  "main": {
-    "title": "ვებკეი"
+  "header": {
+    "home": "მთავარი",
+    "about": "ჩვენს შესახებ",
+    "projects": "პროექტები",
+    "more": "მეტი"
   },
 
   "title": {
-    "home": "Home Page 22222",
-    "about": "About Us 44444444",
-    "projects": "Projects 55555555"
+    "home": "მთავარი",
+    "about": "ჩვენს შესახებ",
+    "projects": "პროექტები",
+    "more": "მეტი"
   }
 }

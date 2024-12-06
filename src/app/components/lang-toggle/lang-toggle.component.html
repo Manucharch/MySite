@@ -1,0 +1,14 @@
+<div class="toggle">
+  <div class="flag"></div>
+  <div class="languages">
+    <select
+      [(ngModel)]="language"
+      name="lang"
+      id="lang"
+      (ngModelChange)="changeLanguage($event)"
+    >
+      <option value="en">en</option>
+      <option value="ge">ge</option>
+    </select>
+  </div>
+</div>

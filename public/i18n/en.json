@@ -1,11 +1,15 @@
 {
-  "main": {
-    "title": "WebKey"
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "more": "More"
   },
 
   "title": {
     "home": "Home Page",
     "about": "About Us",
-    "projects": "Projects"
+    "projects": "Projects",
+    "more": "More"
   }
 }

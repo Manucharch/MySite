@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { TitleService } from '../../../../services/title.service';
 
 @Component({
   selector: 'app-about',
@@ -10,13 +11,13 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AboutComponent implements OnInit {
   constructor(
-    private titleService: Title,
+    private titleService: TitleService,
     private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
-    this.translateService.get('title.about').subscribe((title) => {
-      this.titleService.setTitle(title);
-    });
+    // this.translateService.get('header.about').subscribe((title) => {
+    //   this.titleService.setTitle(title);
+    // });
   }
 }
