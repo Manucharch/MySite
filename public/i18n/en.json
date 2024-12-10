@@ -6,10 +6,8 @@
     "more": "More"
   },
 
-  "title": {
-    "home": "Home Page",
-    "about": "About Us",
-    "projects": "Projects",
-    "more": "More"
+  "home": {
+    "hi": "Hi, We Are",
+    "wk": "WebKey"
   }
 }

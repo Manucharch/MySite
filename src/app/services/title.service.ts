@@ -36,13 +36,13 @@ export class TitleService {
   private getTitleKeyForUrl(url: string): string {
     switch (url) {
       case '/home':
-        return 'title.home';
+        return 'header.home';
       case '/about':
-        return 'title.about';
+        return 'header.about';
       case '/proj':
-        return 'title.projects';
+        return 'header.projects';
       case '/more':
-        return 'title.more';
+        return 'header.more';
       default:
         return 'defaultTitle'; // Default title if no match
     }

@@ -12,7 +12,7 @@ import { TitleService } from '../../../../services/title.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  constructor() {}
+  constructor(private titleService: TitleService) {}
 
   ngOnInit(): void {
     // this.updateTitle();

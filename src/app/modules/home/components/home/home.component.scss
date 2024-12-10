@@ -20,14 +20,13 @@
 
 .intro__img {
   box-shadow: var(--bs);
-  // opacity: 0.85;
 }
 
 .section__subtitle--intro {
   display: inline-block;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 700px) {
   .intro {
     display: grid;
     width: min-content;
@@ -136,13 +135,16 @@
     left: -1em;
     width: calc(100% + 2em);
     padding-left: 1em;
-    padding-right: calc(200px + 4em);
+    padding-right: calc(300px + 4em);
   }
 
   .about-me__img {
     grid-area: img;
     position: relative;
     z-index: 2;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
   }
 }
 

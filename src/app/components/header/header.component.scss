@@ -45,13 +45,13 @@ header {
 }
 
 .nav-toggle {
-  padding: 0.5em;
+  padding: 1em;
   background: transparent;
   border: 0;
   cursor: pointer;
   position: absolute;
   right: 1em;
-  top: 1em;
+  top: 55px;
   z-index: 1000;
 }
 
@@ -84,8 +84,8 @@ header {
 .hamburger::before,
 .hamburger::after {
   background: var(--clr-accent);
-  width: 2em;
-  height: 3px;
+  width: 3em;
+  height: 4px;
   border-radius: 1em;
 
   transition: transform 250ms ease-in-out;

@@ -1,10 +1,12 @@
 <section class="intro" id="home">
   <h1 class="section__title section__title--intro">
-    Hi, We Are <strong>WebKey</strong>
+    {{ "home.hi" | translate }} <strong>{{ "home.wk" | translate }}</strong>
   </h1>
   <p class="section__subtitle section__subtitle--intro">FullStack DEV</p>
   <img src="img/logo.jpg" alt="picture" class="intro__img" />
 </section>
+
+<app-lang-toggle></app-lang-toggle>
 
 <section class="my-services" id="services">
   <h2 class="section__title section_title--services">What we do</h2>
