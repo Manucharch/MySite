@@ -1,4 +1,4 @@
-<header class="my_header">
+<header class="my_header" [ngClass]="{ 'nav-open': !isHiden }">
   <div class="logo">
     <img
       src="img/logo.jpg"
@@ -9,23 +9,23 @@
     />
   </div>
 
-  <button class="nav-toggle" aria-label="toggle navigation">
+  <button class="nav-toggle" aria-label="toggle navigation" (click)="toggle()">
     <span class="hamburger"></span>
   </button>
 
   <nav class="my_nav">
     <ul class="nav__list">
-      <li class="nav__item">
+      <li class="nav__item" (click)="isHiden = true">
         <a class="nav__link" routerLink="home" routerLinkActive="active">{{
           "header.home" | translate
         }}</a>
       </li>
-      <li class="nav__item">
+      <li class="nav__item" (click)="isHiden = true">
         <a routerLink="about" routerLinkActive="active" class="nav__link">{{
           "header.about" | translate
         }}</a>
       </li>
-      <li class="nav__item">
+      <li class="nav__item" (click)="isHiden = true">
         <a routerLink="proj" routerLinkActive="active" class="nav__link">{{
           "header.projects" | translate
         }}</a>
@@ -35,7 +35,7 @@
             >Contact</a
           >
         </li> -->
-      <li class="nav__item">
+      <li class="nav__item" (click)="isHiden = true">
         <a routerLink="more" routerLinkActive="active" class="nav__link">{{
           "header.more" | translate
         }}</a>
