@@ -1,7 +1,8 @@
 header {
   display: flex;
   justify-content: space-between;
-  padding: 1em;
+  padding: 0.5em;
+  background-color: #e9e6e6;
 }
 
 .logo {
@@ -51,7 +52,7 @@ header {
   cursor: pointer;
   position: absolute;
   right: 1em;
-  top: 55px;
+  top: 46px;
   z-index: 1000;
 }
 
