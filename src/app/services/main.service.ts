@@ -1,10 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MainService {
-  language: string = '';
-
-  title = signal<string>('');
-}
+export class MainService {}
