@@ -107,3 +107,47 @@ header {
 .hamburger::after {
   bottom: 6px;
 }
+
+.language {
+  margin: auto;
+}
+
+@media (min-width: 700px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .my_nav {
+    position: relative;
+    transform: translate(0);
+
+    background-color: transparent;
+  }
+
+  // .nav__item {
+  //   margin-left: 1rem;
+  // }
+
+  .my_nav {
+    width: 100%;
+
+    justify-content: space-around;
+  }
+
+  .nav__list {
+    flex-direction: row;
+  }
+
+  .nav__link {
+    font-size: 1.5rem;
+    color: var(--clr-dark);
+
+    padding: 0.1em;
+  }
+
+  .nav__link:hover {
+    background: gray;
+    border-radius: 1em;
+    padding: 0.4em;
+  }
+}
