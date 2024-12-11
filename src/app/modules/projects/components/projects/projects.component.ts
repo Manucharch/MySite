@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
-import { TitleService } from '../../../../services/title.service';
 
 @Component({
   selector: 'app-projects',
@@ -10,7 +7,13 @@ import { TitleService } from '../../../../services/title.service';
   styleUrl: './projects.component.scss',
 })
 export class ProjectsComponent implements OnInit {
-  constructor(private titleSrvice: TitleService) {}
+  title1: string = 'Title';
+  title2: string = 'Of My Project';
+
+  subTitel: string = 'FullStack DEV';
+  src: string = 'img/backgrounds/main6.jpg';
+
+  constructor() {}
 
   ngOnInit(): void {}
 }

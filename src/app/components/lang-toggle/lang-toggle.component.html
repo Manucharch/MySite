@@ -2,13 +2,15 @@
   <div class="flag"></div>
   <div class="languages">
     <select
+      name="language-picker-select"
+      id="language-picker-select"
       [(ngModel)]="language"
       name="lang"
       id="lang"
       (ngModelChange)="changeLanguage($event)"
     >
-      <option value="en">en</option>
-      <option value="ge">ge</option>
+      <option value="ge">ქართული</option>
+      <option value="en">English</option>
     </select>
   </div>
 </div>
