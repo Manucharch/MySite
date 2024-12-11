@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { TitleService } from '../../../../services/title.service';
 
 @Component({
   selector: 'app-about',
@@ -10,14 +8,7 @@ import { TitleService } from '../../../../services/title.service';
   styleUrl: './about.component.scss',
 })
 export class AboutComponent implements OnInit {
-  constructor(
-    private titleService: TitleService,
-    private translateService: TranslateService
-  ) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    // this.translateService.get('header.about').subscribe((title) => {
-    //   this.titleService.setTitle(title);
-    // });
-  }
+  ngOnInit(): void {}
 }
