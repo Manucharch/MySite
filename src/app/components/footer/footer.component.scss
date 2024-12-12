@@ -15,27 +15,31 @@
   font-weight: var(--fw-bold);
 }
 
-.footer__link:hover,
-.social-list__link:hover {
-  opacity: 0.7;
+.animation {
+  isolation: isolate;
 }
 
-.footer__link:hover {
-  text-decoration: underline;
-}
+// .footer__link:hover,
+// .social-list__link:hover {
+//   opacity: 0.7;
+// }
 
-.social-list {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 2em 0 0;
-  padding: 0;
-}
+// .footer__link:hover {
+//   text-decoration: underline;
+// }
 
-.social-list__item {
-  margin: 0 0.5em;
-}
+// .social-list {
+//   list-style: none;
+//   display: flex;
+//   justify-content: center;
+//   margin: 2em 0 0;
+//   padding: 0;
+// }
 
-.social-list__link {
-  padding: 0.5em;
-}
+// .social-list__item {
+//   margin: 0 0.5em;
+// }
+
+// .social-list__link {
+//   padding: 0.5em;
+// }

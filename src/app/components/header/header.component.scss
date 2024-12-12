@@ -153,8 +153,11 @@ header {
   }
 
   .nav__link:hover {
-    background: gray;
-    border-radius: 1em;
+    background: var(--clr-dark);
+    opacity: 0.6;
+    outline: 3px solid var(--clr-accent);
+    outline-offset: 3px;
+    border-radius: 0.7em;
     padding: 0.4em;
   }
 }

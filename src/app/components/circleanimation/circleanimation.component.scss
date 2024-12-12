@@ -17,7 +17,7 @@ a {
   width: 3rem;
   aspect-ratio: 1;
   font-size: 1.5rem;
-  color: #7a7a7a;
+  color: var(--clr-light);
   background-color: #373737;
   border-radius: 50%;
   transition: color 0.5s ease-in-out;
@@ -38,12 +38,12 @@ a::after {
   position: absolute;
   z-index: -1;
   content: "";
-  inset: -4px;
+  inset: -3px;
   border-radius: inherit;
 
   background: conic-gradient(
     var(--clr-accent) var(--fill),
     transparent var(--fill)
   );
-  transition: --fill 0.6s ease-in-out;
+  transition: --fill 0.3s ease-in-out;
 }
