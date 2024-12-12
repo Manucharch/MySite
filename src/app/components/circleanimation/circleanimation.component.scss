@@ -1,0 +1,49 @@
+.circle {
+  padding: 1rem;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  aspect-ratio: 1;
+  font-size: 1.5rem;
+  color: #7a7a7a;
+  background-color: #373737;
+  border-radius: 50%;
+  transition: color 0.5s ease-in-out;
+}
+
+@property --fill {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+a:hover {
+  color: var(--clr-accent);
+  --fill: 100%;
+}
+
+a::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  inset: -4px;
+  border-radius: inherit;
+
+  background: conic-gradient(
+    var(--clr-accent) var(--fill),
+    transparent var(--fill)
+  );
+  transition: --fill 0.6s ease-in-out;
+}
