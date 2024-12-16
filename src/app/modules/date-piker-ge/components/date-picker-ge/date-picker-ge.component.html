@@ -1,0 +1,17 @@
+<div class="picker">
+  <div class="input">
+    <input
+      [(ngModel)]="date"
+      type="text"
+      placeholder="დდ/თთ/წწწწ"
+      appGeorgianDateInput
+      (ngModelChange)="setDate($event)"
+    />
+
+    <div class="toggle" (click)="toggleCalendar()"></div>
+
+    <div *ngIf="showCalendar" class="calendar"></div>
+  </div>
+</div>
+
+<p>{{ date | georgianDateOutput }}</p>
