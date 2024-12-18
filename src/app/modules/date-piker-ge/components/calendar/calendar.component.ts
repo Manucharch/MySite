@@ -24,6 +24,8 @@ export class CalendarComponent implements OnInit {
 
   dateInGeorgian = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
 
+  yearsSignal = signal<number[]>([]);
+
   years: number[] = new Array(3000).fill(null).map((_, i) => i + 1);
   // year = signal<number>(0);
 
@@ -154,12 +156,23 @@ export class CalendarComponent implements OnInit {
     this.dateInGeorgian = this.service.dateInGeorgian;
   }
 
-  // daysInMonth(month: number, year: number): number {
-  //   let length = new Date(year, month, 0).getDate();
-  //   let firsDay = new Date(year, month, 1).getDay();
-  //   let lastDay = new Date(year, month, length).getDay();
-  //   return length;
-  // }
+  setYearsSignal(year: number): void {
+    const arr = Array.from({ length: 20 }, (_, a) => a + year - 10);
+
+    this.yearsSignal.set(arr);
+  }
+
+  showHideYearPad(year: number) {
+    this.setYearsSignal(year);
+
+    this.showYearPad = !this.showYearPad;
+    this.showMonthPad = false;
+  }
+
+  showHideMonthPad() {
+    this.showMonthPad = !this.showMonthPad;
+    this.showYearPad = false;
+  }
 
   setYear(year: number): void {
     this.service.updateDate({
@@ -188,10 +201,26 @@ export class CalendarComponent implements OnInit {
 
   incrementYear(flag: string): void {
     let year = this.service.dateInGeorgian().year;
-    if (flag == 'forward') {
-      this.setYear(Number(year) + 1);
-    } else {
-      this.setYear(Number(year) - 1);
+    if (!this.showMonthPad && !this.showYearPad) {
+      if (flag == 'forward') {
+        this.setYear(Number(year) + 1);
+      } else {
+        this.setYear(Number(year) - 1);
+      }
+    } else if (this.showYearPad) {
+      if (flag == 'forward') {
+        this.setYear(Number(year) + 10);
+        this.setYearsSignal(this.dateInGeorgian().year);
+      } else {
+        this.setYear(Number(year) - 10);
+        this.setYearsSignal(this.dateInGeorgian().year);
+      }
+    } else if (this.showMonthPad) {
+      // if (flag == 'forward') {
+      //   this.setYear(Number(year) + 1);
+      // } else {
+      //   this.setYear(Number(year) - 1);
+      // }
     }
   }
 }

@@ -1,7 +1,26 @@
 <div class="flex-wrapper">
+  <div *ngIf="showYearPad" class="year-pad">
+    <div class="year-grid">
+      @for (yr of yearsSignal(); track $index) {
+      <div class="year-grid__year">{{ yr }}</div>
+      }
+    </div>
+  </div>
+  <div *ngIf="showMonthPad" class="month-pad">
+    <div class="month-grid">
+      @for (mn of monthies; track $index) {
+      <div class="year-grid__month">{{ mn.slice(0, 3) }}</div>
+      }
+    </div>
+  </div>
+
   <div class="flex-wrapper line line-1">
     <div class="line-1__left">
-      <select
+      <div class="btn" (click)="showHideYearPad(dateInGeorgian().year)">
+        {{ dateInGeorgian().year }}
+      </div>
+
+      <!-- <select
         [(ngModel)]="dateInGeorgian().year"
         name="yr"
         id="yr"
@@ -12,8 +31,7 @@
           <b>{{ year }}</b>
         </option>
         }
-      </select>
-      წელი
+      </select> -->
     </div>
     <div class="line-1__right">
       <div class="year-back" (click)="incrementYear('back')"><</div>
@@ -21,7 +39,10 @@
     </div>
   </div>
   <div class="flex-wrapper line line-2">
-    <select
+    <div class="btn" (click)="showHideMonthPad()">
+      {{ monthies[dateInGeorgian().month - 1] }}
+    </div>
+    <!-- <select
       name="month"
       id="month"
       [(ngModel)]="dateInGeorgian().month"
@@ -32,7 +53,7 @@
         {{ mn }}
       </option>
       }
-    </select>
+    </select> -->
   </div>
   <div class="flex-wrapper line line-3">
     <div class="dayNames">
@@ -60,9 +81,6 @@
 
       }
     </div>
-
-    <div *ngIf="showYearPad" class="year-pad">year</div>
-    <div *ngIf="showMonthPad" class="month-pad">month</div>
   </div>
 </div>
 
