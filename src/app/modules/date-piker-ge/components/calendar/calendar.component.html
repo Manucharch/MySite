@@ -1,15 +1,22 @@
 <div class="flex-wrapper">
-  <div *ngIf="showYearPad" class="year-pad">
+  <div *ngIf="showYearPad" class="pad year-pad">
     <div class="year-grid">
       @for (yr of yearsSignal(); track $index) {
-      <div class="year-grid__year">{{ yr }}</div>
+      <div class="year-grid__year" (click)="setYear(yr); showYearPad = false">
+        {{ yr }}
+      </div>
       }
     </div>
   </div>
-  <div *ngIf="showMonthPad" class="month-pad">
+  <div *ngIf="showMonthPad" class="pad month-pad">
     <div class="month-grid">
-      @for (mn of monthies; track $index) {
-      <div class="year-grid__month">{{ mn.slice(0, 3) }}</div>
+      @for (mn of monthies; let idx = $index; track $index) {
+      <div
+        class="year-grid__month"
+        (click)="setMonth(idx + 1); showMonthPad = false"
+      >
+        {{ mn.slice(0, 3) }}
+      </div>
       }
     </div>
   </div>
@@ -67,7 +74,7 @@
     </div>
   </div>
   <div class="flex-wrapper line line-4">
-    <div *ngIf="showMainBord" class="monthDays">
+    <div class="monthDays">
       @for (day of calendarMonthDays(); track $index){
       <div
         (click)="setDay(day)"
@@ -83,6 +90,3 @@
     </div>
   </div>
 </div>
-
-<p>{{ dateInGeorgian().year }}</p>
-<p>{{ monthies[dateInGeorgian().month - 1] }}</p>

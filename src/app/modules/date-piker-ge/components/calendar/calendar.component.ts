@@ -18,7 +18,6 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent implements OnInit {
-  showMainBord: boolean = true;
   showYearPad: boolean = false;
   showMonthPad: boolean = false;
 
@@ -175,6 +174,7 @@ export class CalendarComponent implements OnInit {
   }
 
   setYear(year: number): void {
+    year = Number(year);
     this.service.updateDate({
       year: year,
     });
@@ -183,7 +183,8 @@ export class CalendarComponent implements OnInit {
     console.log(this.service.dateInGeorgian());
   }
 
-  setMonth(event: number): void {
+  setMonth(event: any): void {
+    event = Number(event);
     this.service.updateDate({ month: event });
 
     this.calendarMonthDays();
@@ -201,13 +202,7 @@ export class CalendarComponent implements OnInit {
 
   incrementYear(flag: string): void {
     let year = this.service.dateInGeorgian().year;
-    if (!this.showMonthPad && !this.showYearPad) {
-      if (flag == 'forward') {
-        this.setYear(Number(year) + 1);
-      } else {
-        this.setYear(Number(year) - 1);
-      }
-    } else if (this.showYearPad) {
+    if (this.showYearPad) {
       if (flag == 'forward') {
         this.setYear(Number(year) + 10);
         this.setYearsSignal(this.dateInGeorgian().year);
@@ -215,12 +210,12 @@ export class CalendarComponent implements OnInit {
         this.setYear(Number(year) - 10);
         this.setYearsSignal(this.dateInGeorgian().year);
       }
-    } else if (this.showMonthPad) {
-      // if (flag == 'forward') {
-      //   this.setYear(Number(year) + 1);
-      // } else {
-      //   this.setYear(Number(year) - 1);
-      // }
+    } else {
+      if (flag == 'forward') {
+        this.setYear(Number(year) + 1);
+      } else {
+        this.setYear(Number(year) - 1);
+      }
     }
   }
 }
