@@ -18,6 +18,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent implements OnInit {
+  showMainBord: boolean = true;
+  showYearPad: boolean = false;
+  showMonthPad: boolean = false;
+
   dateInGeorgian = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
 
   years: number[] = new Array(3000).fill(null).map((_, i) => i + 1);
@@ -27,9 +31,105 @@ export class CalendarComponent implements OnInit {
 
   calendarMonthDays = computed(() => {
     const { year, month } = this.dateInGeorgian();
-    return new Array(new Date(year, month, 0).getDate())
+
+    let length = new Date(Number(year), Number(month), 0).getDate();
+    let firsDay = new Date(Number(year), Number(month) - 1, 1).getDay();
+    let lastDay = new Date(Number(year), Number(month) - 1, length).getDay();
+
+    let resp = new Array(new Date(year, month, 0).getDate())
       .fill(null)
       .map((_, i) => i + 1);
+
+    switch (firsDay) {
+      case 0:
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        break;
+
+      case 2:
+        resp.unshift(0);
+        break;
+
+      case 3:
+        resp.unshift(0);
+        resp.unshift(0);
+        break;
+
+      case 4:
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        break;
+
+      case 5:
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        break;
+
+      case 6:
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        resp.unshift(0);
+        break;
+
+      default:
+        break;
+    }
+
+    switch (lastDay) {
+      case 1:
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        break;
+
+      case 2:
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        break;
+
+      case 3:
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        break;
+
+      case 4:
+        resp.push(0);
+        resp.push(0);
+        resp.push(0);
+        break;
+
+      case 5:
+        resp.push(0);
+        resp.push(0);
+
+        break;
+
+      case 6:
+        resp.push(0);
+        break;
+
+      default:
+        break;
+    }
+
+    return resp;
   });
 
   monthies: string[] = [
@@ -52,13 +152,14 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateInGeorgian = this.service.dateInGeorgian;
-    // this.year.set(this.service.year());
-    // this.month.set(this.service.month());
   }
 
-  daysInMonth(month: number, year: number) {
-    return new Date(year, month, 0).getDate();
-  }
+  // daysInMonth(month: number, year: number): number {
+  //   let length = new Date(year, month, 0).getDate();
+  //   let firsDay = new Date(year, month, 1).getDay();
+  //   let lastDay = new Date(year, month, length).getDay();
+  //   return length;
+  // }
 
   setYear(year: number): void {
     this.service.updateDate({
@@ -78,8 +179,19 @@ export class CalendarComponent implements OnInit {
   }
 
   setDay(event: number): void {
-    this.service.updateDate({ day: event });
+    if (event != 0) {
+      this.service.updateDate({ day: event });
 
-    console.log(this.service.dateInGeorgian());
+      console.log(this.service.dateInGeorgian());
+    }
+  }
+
+  incrementYear(flag: string): void {
+    let year = this.service.dateInGeorgian().year;
+    if (flag == 'forward') {
+      this.setYear(Number(year) + 1);
+    } else {
+      this.setYear(Number(year) - 1);
+    }
   }
 }

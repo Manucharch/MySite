@@ -15,7 +15,10 @@
       </select>
       წელი
     </div>
-    <div class="line-1__right">1b</div>
+    <div class="line-1__right">
+      <div class="year-back" (click)="incrementYear('back')"><</div>
+      <div class="year-forward" (click)="incrementYear('forward')">></div>
+    </div>
   </div>
   <div class="flex-wrapper line line-2">
     <select
@@ -30,7 +33,6 @@
       </option>
       }
     </select>
-    <!-- <b>{{ month() }}</b> -->
   </div>
   <div class="flex-wrapper line line-3">
     <div class="dayNames">
@@ -44,20 +46,23 @@
     </div>
   </div>
   <div class="flex-wrapper line line-4">
-    <div class="monthDays">
-      @for (day of calendarMonthDays(); track day){
+    <div *ngIf="showMainBord" class="monthDays">
+      @for (day of calendarMonthDays(); track $index){
       <div
         (click)="setDay(day)"
         [ngClass]="{
+          mDay: day != 0,
           selectedDay: day == dateInGeorgian().day
         }"
-        class="mDay"
       >
-        {{ day }}
+        {{ day == 0 ? "" : day }}
       </div>
 
       }
     </div>
+
+    <div *ngIf="showYearPad" class="year-pad">year</div>
+    <div *ngIf="showMonthPad" class="month-pad">month</div>
   </div>
 </div>
 

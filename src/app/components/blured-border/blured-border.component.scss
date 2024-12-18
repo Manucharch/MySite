@@ -1,10 +1,6 @@
 @property --a {
-  /* must register --a to animate it */
   syntax: "<angle>";
   initial-value: 0deg;
-  /* used only on pseudo, nowhere to be inherited, 
-	 * better perf if set false, see 
-	 * https://www.bram.us/2024/10/03/benchmarking-the-performance-of-css-property/ */
   inherits: false;
 }
 

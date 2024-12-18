@@ -1,4 +1,12 @@
-import { Component, OnInit, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { GeorgianDateInputService } from '../../services/georgian-date-input.service';
 import { DateGeInterface } from '../../types/date.georgian.interface';
 
@@ -17,7 +25,15 @@ export class DatePickerGEComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateFromService = this.service.dateInGeorgian;
-    // this.date =
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedElement = event.target as HTMLElement;
+
+    if (!clickedElement.closest('.calendar')) {
+      this.isFolded = true;
+    }
   }
 
   setDate(date: string): void {
@@ -34,7 +50,8 @@ export class DatePickerGEComponent implements OnInit {
     console.log(this.service.dateInGeorgian());
   }
 
-  toggleCalendar(): void {
+  toggleCalendar(event: Event): void {
+    event.stopPropagation();
     this.isFolded = !this.isFolded;
   }
 }

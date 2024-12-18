@@ -3,12 +3,13 @@
     <input
       [(ngModel)]="date"
       type="text"
+      id="dateInp"
       placeholder="დდ/თთ/წწწწ"
       appGeorgianDateInput
       (ngModelChange)="setDate($event)"
     />
 
-    <div class="toggle" (click)="toggleCalendar()">
+    <div class="toggle" (click)="toggleCalendar($event)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -32,6 +33,7 @@
         'calendar-folded': isFolded,
         'calendar-expanded': !isFolded
       }"
+      #calendarDiv
     >
       <app-calendar></app-calendar>
     </div>
