@@ -1,29 +1,30 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { computed, Injectable, OnInit, signal } from '@angular/core';
+import { DateGeInterface } from '../types/date.georgian.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GeorgianDateInputService {
-  getSuggestions(inputValue: string): Observable<string[]> {
-    // Implement your logic to generate suggestions based on the inputValue
-    // For example:
-    // 1. Fetch data from a server (if applicable)
-    // 2. Use a pre-defined list of dates
-    // 3. Generate suggestions based on common date patterns
+export class GeorgianDateInputService implements OnInit {
+  dateInGeorgian = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
 
-    // Example: Simple suggestion logic (replace with your actual implementation)
-    const suggestions: string[] = [];
+  year = computed(() => this.dateInGeorgian().year);
 
-    if (inputValue.length >= 2) {
-      suggestions.push(`${inputValue}01`); // Suggest day 1st of the month
-      suggestions.push(`${inputValue}15`); // Suggest day 15th of the month
-    }
+  month = computed(() => this.dateInGeorgian().month);
 
-    if (inputValue.length >= 2) {
-      suggestions.push(`${inputValue}01`); // Suggest day 1st of the month
-      suggestions.push(`${inputValue}15`); // Suggest day 15th of the month
-    }
-    return of(suggestions);
+  constructor() {
+    this.updateDate({
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      day: new Date().getDate(),
+    });
+  }
+
+  ngOnInit(): void {}
+
+  updateDate(date: Partial<DateGeInterface>): void {
+    this.dateInGeorgian.update((current) => ({
+      ...current,
+      ...date,
+    }));
   }
 }

@@ -1,0 +1,65 @@
+<div class="flex-wrapper">
+  <div class="flex-wrapper line line-1">
+    <div class="line-1__left">
+      <select
+        [(ngModel)]="dateInGeorgian().year"
+        name="yr"
+        id="yr"
+        (ngModelChange)="setYear($event)"
+      >
+        @for (year of years; track $index) {
+        <option value="{{ year }}">
+          <b>{{ year }}</b>
+        </option>
+        }
+      </select>
+      წელი
+    </div>
+    <div class="line-1__right">1b</div>
+  </div>
+  <div class="flex-wrapper line line-2">
+    <select
+      name="month"
+      id="month"
+      [(ngModel)]="dateInGeorgian().month"
+      (ngModelChange)="setMonth($event)"
+    >
+      @for (mn of monthies; track $index) {
+      <option value="{{ $index + 1 }}">
+        {{ mn }}
+      </option>
+      }
+    </select>
+    <!-- <b>{{ month() }}</b> -->
+  </div>
+  <div class="flex-wrapper line line-3">
+    <div class="dayNames">
+      <div class="day">ორ</div>
+      <div class="day">სმ</div>
+      <div class="day">ოთ</div>
+      <div class="day">ხთ</div>
+      <div class="day">პრ</div>
+      <div class="day">შბ</div>
+      <div class="day">კვ</div>
+    </div>
+  </div>
+  <div class="flex-wrapper line line-4">
+    <div class="monthDays">
+      @for (day of calendarMonthDays(); track day){
+      <div
+        (click)="setDay(day)"
+        [ngClass]="{
+          selectedDay: day == dateInGeorgian().day
+        }"
+        class="mDay"
+      >
+        {{ day }}
+      </div>
+
+      }
+    </div>
+  </div>
+</div>
+
+<p>{{ dateInGeorgian().year }}</p>
+<p>{{ monthies[dateInGeorgian().month - 1] }}</p>

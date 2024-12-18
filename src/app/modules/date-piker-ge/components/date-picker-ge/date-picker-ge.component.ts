@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { GeorgianDateInputService } from '../../services/georgian-date-input.service';
+import { DateGeInterface } from '../../types/date.georgian.interface';
 
 @Component({
   selector: 'app-date-picker-ge',
@@ -6,15 +8,33 @@ import { Component } from '@angular/core';
   templateUrl: './date-picker-ge.component.html',
   styleUrl: './date-picker-ge.component.scss',
 })
-export class DatePickerGEComponent {
+export class DatePickerGEComponent implements OnInit {
   date: string = '';
-  showCalendar: boolean = false;
+  isFolded: boolean = true;
+  dateFromService = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
+
+  constructor(private service: GeorgianDateInputService) {}
+
+  ngOnInit(): void {
+    this.dateFromService = this.service.dateInGeorgian;
+    // this.date =
+  }
 
   setDate(date: string): void {
-    console.log(date);
+    const pattern: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (pattern.test(date.replace(/ /g, ''))) {
+      let year = Number(date.split('/')[2]);
+      let month = Number(date.split('/')[1]);
+      let day = Number(date.split('/')[0]);
+
+      this.service.updateDate({ year, month, day });
+    }
+
+    console.log('from servise -');
+    console.log(this.service.dateInGeorgian());
   }
 
   toggleCalendar(): void {
-    this.showCalendar = !this.showCalendar;
+    this.isFolded = !this.isFolded;
   }
 }
