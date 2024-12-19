@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, output, signal } from '@angular/core';
 
 import { GeorgianDateInputService } from '../../services/georgian-date-input.service';
 import { DateGeInterface } from '../../types/date.georgian.interface';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-date-picker-ge',
@@ -10,7 +11,10 @@ import { DateGeInterface } from '../../types/date.georgian.interface';
   styleUrl: './date-picker-ge.component.scss',
 })
 export class DatePickerGEComponent implements OnInit {
-  date: string = '';
+  dateString: string = '';
+
+  dateInput: DateGeInterface = { year: 0, month: 0, day: 0 };
+
   isFolded: boolean = true;
   dateFromService = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
 
@@ -18,6 +22,60 @@ export class DatePickerGEComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateFromService = this.service.dateInGeorgian;
+
+    this.dateInput = this.dateFromService();
+  }
+
+  selectAll(event: FocusEvent | MouseEvent): void {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.select();
+  }
+
+  checkDateInput(date: DateGeInterface): boolean {
+    if (date.day < 1 || date.day > 31) {
+      return false;
+    }
+
+    if (date.month < 1 || date.month > 12) {
+      return false;
+    }
+
+    return true;
+  }
+
+  updateDate(flag: string) {
+    if (this.checkDateInput(this.dateInput)) {
+      this.service.updateDate(this.dateInput);
+    }
+  }
+
+  validateDay(dayInput: NgModel): boolean {
+    if (dayInput.invalid && dayInput.touched) {
+      this.dateInput.day = 0;
+
+      return false;
+    }
+
+    return true;
+  }
+
+  getDatesFromCAlendar(event: string) {
+    switch (event) {
+      case 'year':
+        this.dateInput.year = this.dateFromService().year;
+        break;
+
+      case 'month':
+        this.dateInput.month = this.dateFromService().month;
+        break;
+
+      case 'day':
+        this.dateInput.day = this.dateFromService().day;
+        break;
+
+      default:
+        break;
+    }
   }
 
   @HostListener('document:click', ['$event'])
@@ -29,16 +87,16 @@ export class DatePickerGEComponent implements OnInit {
     }
   }
 
-  setDate(date: string): void {
-    const pattern: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
-    if (pattern.test(date.replace(/ /g, ''))) {
-      let year = Number(date.split('/')[2]);
-      let month = Number(date.split('/')[1]);
-      let day = Number(date.split('/')[0]);
+  // setDate(date: string): void {
+  //   const pattern: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
+  //   if (pattern.test(date.replace(/ /g, ''))) {
+  //     let year = Number(date.split('/')[2]);
+  //     let month = Number(date.split('/')[1]);
+  //     let day = Number(date.split('/')[0]);
 
-      this.service.updateDate({ year, month, day });
-    }
-  }
+  //     this.service.updateDate({ year, month, day });
+  //   }
+  // }
 
   toggleCalendar(event: Event): void {
     event.stopPropagation();

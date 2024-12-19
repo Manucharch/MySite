@@ -19,14 +19,15 @@ import { DateGeInterface } from '../../types/date.georgian.interface';
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent implements OnInit {
+  dateFromCalendarOutput = output<string>();
+  closeCalendarOutput = output<void>();
+
   showYearPad: boolean = false;
   showMonthPad: boolean = false;
 
   dateFromService = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
 
   yearsSignal = signal<number[]>([]);
-
-  closeCalendarOutput = output<void>();
 
   constructor(private service: GeorgianDateInputService) {}
 
@@ -177,6 +178,8 @@ export class CalendarComponent implements OnInit {
     });
 
     this.calendarMonthDays();
+
+    this.dateFromCalendarOutput.emit('year');
   }
 
   setMonth(event: any): void {
@@ -184,6 +187,8 @@ export class CalendarComponent implements OnInit {
     this.service.updateDate({ month: event });
 
     this.calendarMonthDays();
+
+    this.dateFromCalendarOutput.emit('month');
   }
 
   setDay(event: number): void {
@@ -191,6 +196,8 @@ export class CalendarComponent implements OnInit {
       this.service.updateDate({ day: event });
 
       this.closeCalendarOutput.emit();
+
+      this.dateFromCalendarOutput.emit('day');
     }
   }
 

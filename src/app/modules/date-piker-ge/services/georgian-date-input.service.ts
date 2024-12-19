@@ -7,9 +7,9 @@ import { DateGeInterface } from '../types/date.georgian.interface';
 export class GeorgianDateInputService implements OnInit {
   dateInGeorgian = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
 
-  year = computed(() => this.dateInGeorgian().year);
+  // year = computed(() => this.dateInGeorgian().year);
 
-  month = computed(() => this.dateInGeorgian().month);
+  // month = computed(() => this.dateInGeorgian().month);
 
   constructor() {
     this.updateDate({

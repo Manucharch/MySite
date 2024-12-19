@@ -15,17 +15,8 @@
 }
 
 input {
-  height: 40px;
-
-  padding: 0.3rem;
-
-  background-color: rgb(202, 197, 197);
-  opacity: 0.8;
-
-  border: 1px solid black;
-  border-radius: 10px;
-
-  letter-spacing: 2px;
+  text-align: center;
+  font-size: var(--fs-body);
 }
 
 input:hover,
@@ -38,13 +29,57 @@ input:focus {
   position: relative;
 }
 
+.date-string {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: flex-start;
+
+  gap: 7px;
+
+  height: 40px;
+  width: 200px;
+  padding: 0.3rem;
+
+  background-color: rgb(202, 197, 197);
+  opacity: 0.8;
+
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.cell {
+  cursor: text;
+
+  border-radius: 10px;
+}
+
+.error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  font-size: 12px;
+}
+
+.day,
+.month {
+  width: 18%;
+}
+
+.year {
+  width: 37%;
+}
+
 .calendar {
   position: absolute;
 
   top: 40px;
-  left: -20%;
+  left: -13%;
 
-  width: 140%;
+  width: 126%;
 
   border-radius: 1rem;
 
@@ -66,8 +101,8 @@ input:focus {
 .toggle {
   position: absolute;
 
-  top: 5px;
-  right: 5px;
+  top: 4px;
+  right: 3px;
 
   width: 30px;
   height: 30px;
