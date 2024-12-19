@@ -3,6 +3,7 @@ import {
   computed,
   HostListener,
   OnInit,
+  output,
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,6 +25,8 @@ export class CalendarComponent implements OnInit {
   dateFromService = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
 
   yearsSignal = signal<number[]>([]);
+
+  closeCalendarOutput = output<void>();
 
   constructor(private service: GeorgianDateInputService) {}
 
@@ -186,6 +189,8 @@ export class CalendarComponent implements OnInit {
   setDay(event: number): void {
     if (event != 0) {
       this.service.updateDate({ day: event });
+
+      this.closeCalendarOutput.emit();
     }
   }
 

@@ -34,7 +34,12 @@
         'calendar-expanded': !isFolded
       }"
     >
-      <app-calendar></app-calendar>
+      <app-calendar (closeCalendarOutput)="isFolded = true"></app-calendar>
     </div>
+
+    <p>არჩეული თარიღი:</p>
+    <p>
+      {{ dateFromService() | georgianDateOutput }}
+    </p>
   </div>
 </div>
