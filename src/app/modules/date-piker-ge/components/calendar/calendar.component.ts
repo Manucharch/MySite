@@ -189,6 +189,8 @@ export class CalendarComponent implements OnInit {
     this.calendarMonthDays();
 
     this.dateFromCalendarOutput.emit('month');
+
+    this.showMonthPad = false;
   }
 
   setDay(event: number): void {

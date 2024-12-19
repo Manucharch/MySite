@@ -1,88 +1,88 @@
 <div class="flex-wrapper">
-  <div class="pads">
-    <div *ngIf="showYearPad" class="pad year-pad">
-      <div class="year-grid">
-        @for (yr of yearsSignal(); track $index) {
-        <div class="year-grid__year" (click)="setYear(yr); showYearPad = false">
-          {{ yr }}
-        </div>
-        }
-      </div>
-    </div>
-    <div *ngIf="showMonthPad" class="pad month-pad">
-      <div class="month-grid">
-        @for (mn of monthies; let idx = $index; track $index) {
-        <div
-          class="month-grid__month"
-          (click)="setMonth(idx + 1); showMonthPad = false"
-        >
-          {{ mn.slice(0, 3) }}
-        </div>
-        }
-      </div>
-    </div>
-  </div>
-
   <div class="flex-wrapper line line-1">
     <div class="line-1__left">
       <div class="btn" (click)="showHideYearPad(dateFromService().year)">
         {{ dateFromService().year }}
       </div>
 
-      <!-- <select
-        [(ngModel)]="dateInGeorgian().year"
-        name="yr"
-        id="yr"
-        (ngModelChange)="setYear($event)"
+      <div
+        *ngIf="showYearPad"
+        class="pad year-pad"
+        (click)="$event.stopPropagation()"
       >
-        @for (year of years; track $index) {
-        <option value="{{ year }}">
-          <b>{{ year }}</b>
-        </option>
+        @for (yr of yearsSignal(); track $index) {
+        <div
+          class="year-pad__year"
+          (click)="
+            setYear(yr); this.showYearPad = false; this.showMonthPad = true
+          "
+        >
+          {{ yr }}
+        </div>
         }
-      </select> -->
+      </div>
     </div>
     <div class="line-1__right">
-      <div class="year-back" (click)="incrementYear('back')"><</div>
-      <div class="year-forward" (click)="incrementYear('forward')">></div>
+      <div class="back-forward back" (click)="incrementYear('back')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z"
+          />
+        </svg>
+      </div>
+      <div class="back-forward forward" (click)="incrementYear('forward')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z"
+          />
+        </svg>
+      </div>
     </div>
   </div>
   <div class="flex-wrapper line line-2">
     <div class="btn" (click)="showHideMonthPad()">
       {{ monthies[dateFromService().month - 1] }}
     </div>
-    <!-- <select
-      name="month"
-      id="month"
-      [(ngModel)]="dateInGeorgian().month"
-      (ngModelChange)="setMonth($event)"
+    <div
+      *ngIf="showMonthPad"
+      class="pad month-pad"
+      (click)="$event.stopPropagation()"
     >
-      @for (mn of monthies; track $index) {
-      <option value="{{ $index + 1 }}">
-        {{ mn }}
-      </option>
+      @for (mn of monthies; let idx = $index; track $index) {
+      <div class="month-pad__month" (click)="setMonth(idx + 1)">
+        {{ mn.slice(0, 3) }}
+      </div>
       }
-    </select> -->
+    </div>
   </div>
   <div class="flex-wrapper line line-3">
-    <div class="dayNames">
-      <div class="day">ორ</div>
-      <div class="day">სმ</div>
-      <div class="day">ოთ</div>
-      <div class="day">ხთ</div>
-      <div class="day">პრ</div>
-      <div class="day">შბ</div>
-      <div class="day">კვ</div>
-    </div>
+    <div class="day">ორ</div>
+    <div class="day">სმ</div>
+    <div class="day">ოთ</div>
+    <div class="day">ხთ</div>
+    <div class="day">პრ</div>
+    <div class="day" style="color: brown">შბ</div>
+    <div class="day" style="color: rgb(165, 42, 42)">კვ</div>
   </div>
   <div class="flex-wrapper line line-4">
     <div class="monthDays">
-      @for (day of calendarMonthDays(); track $index){
+      @for (day of calendarMonthDays(); let idx = $index; track $index){
       <div
         (click)="setDay(day)"
         [ngClass]="{
           mDay: day != 0,
-          selectedDay: day == dateFromService().day
+          selectedDay: day == dateFromService().day,
+          brown: (idx + 1) % 7 == 0 || (idx + 1) % 7 == 6
         }"
       >
         {{ day == 0 ? "" : day }}

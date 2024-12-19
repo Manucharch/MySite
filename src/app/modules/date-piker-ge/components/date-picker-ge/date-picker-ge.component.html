@@ -5,6 +5,7 @@
         [(ngModel)]="dateInput.day"
         type="text"
         class="cell day"
+        id="day"
         (focus)="selectAll($event)"
         (click)="selectAll($event)"
         (blur)="validateDay(dayInput); updateDate('day')"
@@ -14,14 +15,15 @@
         #dayInput="ngModel"
       />
 
-      <div *ngIf="dayInput.invalid && dayInput.touched" class="error">
+      <!-- <div *ngIf="dayInput.invalid && dayInput.touched" class="error">
         შეიყვანეთ სწორი რიცხვი (1-31).
-      </div>
+      </div> -->
 
       <input
         [(ngModel)]="dateInput.month"
         type="text"
         class="cell month"
+        id="month"
         (focus)="selectAll($event)"
         (click)="selectAll($event)"
         (blur)="validateDay(dayInput); updateDate('day')"
@@ -31,6 +33,7 @@
         [(ngModel)]="dateInput.year"
         type="text"
         class="cell year"
+        id="year"
         (focus)="selectAll($event)"
         (click)="selectAll($event)"
         (blur)="validateDay(dayInput); updateDate('day')"
