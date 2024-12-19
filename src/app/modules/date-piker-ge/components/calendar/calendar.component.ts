@@ -1,15 +1,15 @@
 import {
   Component,
   computed,
-  Input,
-  input,
+  HostListener,
   OnInit,
   signal,
 } from '@angular/core';
-import { GeorgianDateInputService } from '../../services/georgian-date-input.service';
-import { DateGeInterface } from '../../types/date.georgian.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+import { GeorgianDateInputService } from '../../services/georgian-date-input.service';
+import { DateGeInterface } from '../../types/date.georgian.interface';
 
 @Component({
   selector: 'app-calendar',
@@ -21,17 +21,28 @@ export class CalendarComponent implements OnInit {
   showYearPad: boolean = false;
   showMonthPad: boolean = false;
 
-  dateInGeorgian = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
+  dateFromService = signal<DateGeInterface>({ year: 0, month: 0, day: 0 });
 
   yearsSignal = signal<number[]>([]);
 
-  years: number[] = new Array(3000).fill(null).map((_, i) => i + 1);
-  // year = signal<number>(0);
+  constructor(private service: GeorgianDateInputService) {}
 
-  // monthDays = signal<number[]>([]);
+  ngOnInit(): void {
+    this.dateFromService = this.service.dateInGeorgian;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedElement = event.target as HTMLElement;
+
+    if (!clickedElement.closest('.calendar')) {
+      this.showMonthPad = false;
+      this.showYearPad = false;
+    }
+  }
 
   calendarMonthDays = computed(() => {
-    const { year, month } = this.dateInGeorgian();
+    const { year, month } = this.dateFromService();
 
     let length = new Date(Number(year), Number(month), 0).getDate();
     let firsDay = new Date(Number(year), Number(month) - 1, 1).getDay();
@@ -43,12 +54,9 @@ export class CalendarComponent implements OnInit {
 
     switch (firsDay) {
       case 0:
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
+        for (let index = 0; index < 6; index++) {
+          resp.unshift(0);
+        }
         break;
 
       case 2:
@@ -56,29 +64,27 @@ export class CalendarComponent implements OnInit {
         break;
 
       case 3:
-        resp.unshift(0);
-        resp.unshift(0);
+        for (let index = 0; index < 2; index++) {
+          resp.unshift(0);
+        }
         break;
 
       case 4:
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
+        for (let index = 0; index < 3; index++) {
+          resp.unshift(0);
+        }
         break;
 
       case 5:
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
+        for (let index = 0; index < 4; index++) {
+          resp.unshift(0);
+        }
         break;
 
       case 6:
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
-        resp.unshift(0);
+        for (let index = 0; index < 5; index++) {
+          resp.unshift(0);
+        }
         break;
 
       default:
@@ -87,38 +93,33 @@ export class CalendarComponent implements OnInit {
 
     switch (lastDay) {
       case 1:
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
+        for (let index = 0; index < 6; index++) {
+          resp.push(0);
+        }
         break;
 
       case 2:
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
+        for (let index = 0; index < 5; index++) {
+          resp.push(0);
+        }
         break;
 
       case 3:
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
+        for (let index = 0; index < 4; index++) {
+          resp.push(0);
+        }
         break;
 
       case 4:
-        resp.push(0);
-        resp.push(0);
-        resp.push(0);
+        for (let index = 0; index < 3; index++) {
+          resp.push(0);
+        }
         break;
 
       case 5:
-        resp.push(0);
-        resp.push(0);
+        for (let index = 0; index < 2; index++) {
+          resp.push(0);
+        }
 
         break;
 
@@ -147,13 +148,6 @@ export class CalendarComponent implements OnInit {
     'ნოემბერი',
     'დეკემბერი',
   ];
-  // month = signal<number>(0);
-
-  constructor(private service: GeorgianDateInputService) {}
-
-  ngOnInit(): void {
-    this.dateInGeorgian = this.service.dateInGeorgian;
-  }
 
   setYearsSignal(year: number): void {
     const arr = Array.from({ length: 20 }, (_, a) => a + year - 10);
@@ -180,7 +174,6 @@ export class CalendarComponent implements OnInit {
     });
 
     this.calendarMonthDays();
-    console.log(this.service.dateInGeorgian());
   }
 
   setMonth(event: any): void {
@@ -188,15 +181,11 @@ export class CalendarComponent implements OnInit {
     this.service.updateDate({ month: event });
 
     this.calendarMonthDays();
-
-    console.log(this.service.dateInGeorgian());
   }
 
   setDay(event: number): void {
     if (event != 0) {
       this.service.updateDate({ day: event });
-
-      console.log(this.service.dateInGeorgian());
     }
   }
 
@@ -205,10 +194,10 @@ export class CalendarComponent implements OnInit {
     if (this.showYearPad) {
       if (flag == 'forward') {
         this.setYear(Number(year) + 10);
-        this.setYearsSignal(this.dateInGeorgian().year);
+        this.setYearsSignal(this.dateFromService().year);
       } else {
         this.setYear(Number(year) - 10);
-        this.setYearsSignal(this.dateInGeorgian().year);
+        this.setYearsSignal(this.dateFromService().year);
       }
     } else {
       if (flag == 'forward') {

@@ -1,12 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  signal,
-  ViewChild,
-} from '@angular/core';
+import { Component, HostListener, OnInit, output, signal } from '@angular/core';
+
 import { GeorgianDateInputService } from '../../services/georgian-date-input.service';
 import { DateGeInterface } from '../../types/date.georgian.interface';
 
@@ -45,9 +38,6 @@ export class DatePickerGEComponent implements OnInit {
 
       this.service.updateDate({ year, month, day });
     }
-
-    console.log('from servise -');
-    console.log(this.service.dateInGeorgian());
   }
 
   toggleCalendar(event: Event): void {
