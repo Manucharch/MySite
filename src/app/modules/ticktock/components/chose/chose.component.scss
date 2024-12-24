@@ -4,8 +4,10 @@
   width: 80%;
   height: 65%;
 
+  padding: 0.3rem;
+
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   position: absolute;
 
@@ -13,5 +15,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: red;
+  background-color: wheat;
+
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
 }

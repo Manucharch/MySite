@@ -11,13 +11,13 @@ export class TicktockComponent {
   rows: string[] = ['1', '2', '3'];
   columns: string[] = ['a', 'b', 'c'];
 
-  displayValue: string = 'none';
+  // displayValue: string = 'none';
 
   gameStarted: boolean = false;
 
-  showChose: boolean = false;
+  // showChose: boolean = false;
 
-  onCellClick(row: string, column: string): void {
+  startGame(row: string, column: string): void {
     if (!this.gameStarted) {
       console.log(`${row}${column}`);
       const element = document.getElementById(`${row}${column}`) as HTMLElement;
@@ -28,4 +28,6 @@ export class TicktockComponent {
       this.gameStarted = true;
     }
   }
+
+  getClose() {}
 }

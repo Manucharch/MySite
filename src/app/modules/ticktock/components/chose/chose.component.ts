@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 
 @Component({
   selector: 'app-chose',
@@ -7,7 +7,17 @@ import { Component, input, OnInit } from '@angular/core';
   styleUrl: './chose.component.scss',
 })
 export class ChoseComponent implements OnInit {
-  idInp = input.required();
+  idInp = input.required<string>();
 
   ngOnInit(): void {}
+
+  setPlayer(player: string): void {
+    console.log(player);
+
+    let id = `wr${this.idInp()}`;
+
+    const element = document.getElementById(id) as HTMLElement;
+
+    element.innerHTML = player;
+  }
 }
