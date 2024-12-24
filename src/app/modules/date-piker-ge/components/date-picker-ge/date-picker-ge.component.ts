@@ -87,17 +87,6 @@ export class DatePickerGEComponent implements OnInit {
     }
   }
 
-  // setDate(date: string): void {
-  //   const pattern: RegExp = /^\d{2}\/\d{2}\/\d{4}$/;
-  //   if (pattern.test(date.replace(/ /g, ''))) {
-  //     let year = Number(date.split('/')[2]);
-  //     let month = Number(date.split('/')[1]);
-  //     let day = Number(date.split('/')[0]);
-
-  //     this.service.updateDate({ year, month, day });
-  //   }
-  // }
-
   toggleCalendar(event: Event): void {
     event.stopPropagation();
     this.isFolded = !this.isFolded;

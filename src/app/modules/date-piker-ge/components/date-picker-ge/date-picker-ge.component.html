@@ -15,10 +15,6 @@
         #dayInput="ngModel"
       />
 
-      <!-- <div *ngIf="dayInput.invalid && dayInput.touched" class="error">
-        შეიყვანეთ სწორი რიცხვი (1-31).
-      </div> -->
-
       <input
         [(ngModel)]="dateInput.month"
         type="text"
@@ -70,10 +66,5 @@
         (closeCalendarOutput)="isFolded = true"
       ></app-calendar>
     </div>
-
-    <p>არჩეული თარიღი:</p>
-    <p>
-      {{ dateFromService() | georgianDateOutput }}
-    </p>
   </div>
 </div>

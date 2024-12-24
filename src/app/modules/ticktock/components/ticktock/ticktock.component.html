@@ -1,0 +1,13 @@
+<div class="flex-wrapper">
+  <div class="ticktock">
+    @for (row of rows; track $index; let i = $index) { @for (column of columns;
+    track $index; let j = $index) {
+    <div class="item flex-wrapper" (click)="onCellClick(row, column)">
+      {{ row + column }}
+      <div>
+        <app-chose [idInp]="row + column"></app-chose>
+      </div>
+    </div>
+    } }
+  </div>
+</div>

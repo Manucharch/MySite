@@ -22,12 +22,16 @@
   font-family: serif;
   font-size: var(--fs-body);
 
+  border: 1px solid var(--clr-boxShadow1);
   border-radius: 1rem;
-  box-shadow: var(--pbs1);
+  // box-shadow: var(--pbs1);
 }
 
 .picker:hover {
-  box-shadow: var(--pbs2);
+  background-color: var(--clr-background);
+  .date-string {
+    opacity: 0.8;
+  }
 }
 
 input {
@@ -133,13 +137,12 @@ input:focus {
 
   border-radius: 50%;
 
+  border: 1px solid var(--clr-background);
+
   z-index: 999;
 }
 
-.toggle svg {
-  opacity: 0.7;
-}
-
 .toggle:hover {
+  cursor: pointer;
   background-color: white;
 }
