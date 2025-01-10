@@ -1,0 +1,20 @@
+<div class="flex-wrapper">
+  <div class="ticktock" id="pad">
+    @for (row of dimension; track $index; let i = $index) { @for (column of
+    dimension; track $index; let j = $index) {
+    <div class="item flex-wrapper" (click)="makeMove(row, column)">
+      <div class="flex-wrapper" id="{{ row + column }}svg"></div>
+      <div>
+        <app-chose
+          [idInp]="row + column"
+          (playerOutput)="getPlayerInfo($event)"
+        ></app-chose>
+      </div>
+    </div>
+    } }
+  </div>
+</div>
+
+<div class="flex-erapper">
+  <div class="btn" (click)="startGame()">start</div>
+</div>

@@ -91,6 +91,7 @@ h2,
 h3 {
   line-height: 1;
   margin: 10px 0;
+  text-align: center;
 }
 
 h1 {
@@ -150,6 +151,13 @@ html {
 /* BUTTONS */
 
 .flex-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.wr-f {
   display: flex;
   align-items: center;
   justify-content: center;

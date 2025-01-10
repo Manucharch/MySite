@@ -20,9 +20,9 @@ export class ChoseComponent implements OnInit {
   setPlayer(event: Event, player: string): void {
     event.stopPropagation();
 
-    let id = `wr${this.idInp()}svg`;
+    let id = `${this.idInp()}svg`;
 
-    const element1 = document.getElementById(id.slice(2, 4)) as HTMLElement;
+    const element1 = document.getElementById(id.slice(0, 2)) as HTMLElement;
     element1.style.display = 'none';
 
     const element = document.getElementById(id) as HTMLElement;
@@ -37,7 +37,7 @@ export class ChoseComponent implements OnInit {
       id: '1',
       icon: player,
       name: 'Player 1',
-      placedIcons: [id.slice(0, 4)],
+      placedIcons: [id.slice(0, 2)],
     });
   }
 }

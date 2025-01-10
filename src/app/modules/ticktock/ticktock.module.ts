@@ -3,9 +3,18 @@ import { CommonModule } from '@angular/common';
 import { TicktockComponent } from './components/ticktock/ticktock.component';
 import { ChoseComponent } from './components/chose/chose.component';
 import { FormsModule } from '@angular/forms';
+import { GameboardComponent } from './components/gameboard/gameboard.component';
+import { GameStyleComponent } from './components/game-style/game-style.component';
+import { StartGameComponent } from './components/start-game/start-game.component';
 
 @NgModule({
-  declarations: [TicktockComponent, ChoseComponent],
+  declarations: [
+    TicktockComponent,
+    ChoseComponent,
+    GameboardComponent,
+    GameStyleComponent,
+    StartGameComponent,
+  ],
   imports: [CommonModule, FormsModule],
   exports: [TicktockComponent],
 })

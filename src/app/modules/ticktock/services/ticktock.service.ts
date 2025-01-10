@@ -29,12 +29,28 @@ export class TicktockService {
       />
     </svg>`;
 
-  activePlayer = signal<playerInterface>({
-    id: '',
+  player1 = signal<playerInterface>({
+    id: '1',
     icon: '',
-    name: '',
+    name: 'Player1',
     placedIcons: [],
   });
+
+  player2 = signal<playerInterface>({
+    id: '2',
+    icon: '',
+    name: 'Player2',
+    placedIcons: [],
+  });
+
+  playerComputer = signal<playerInterface>({
+    id: '3',
+    icon: '',
+    name: 'Computer',
+    placedIcons: [],
+  });
+
+  activePlayer = signal<playerInterface>(this.player1());
 
   constructor() {}
 }
