@@ -4,17 +4,16 @@
     dimension; track $index; let j = $index) {
     <div class="item flex-wrapper" (click)="makeMove(row, column)">
       <div class="flex-wrapper" id="{{ row + column }}svg"></div>
-      <div>
-        <app-chose
-          [idInp]="row + column"
-          (playerOutput)="getPlayerInfo($event)"
-        ></app-chose>
-      </div>
     </div>
     } }
-  </div>
-</div>
 
-<div class="flex-erapper">
-  <div class="btn" (click)="startGame()">start</div>
+    <div class="winner" id="winner">
+      <div class="block">
+        <h2 id="active-name">
+          {{ activePlayer().name }}
+        </h2>
+        <h3>You Win!!!</h3>
+      </div>
+    </div>
+  </div>
 </div>

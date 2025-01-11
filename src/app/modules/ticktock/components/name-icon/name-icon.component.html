@@ -1,0 +1,17 @@
+<div *ngIf="showSetName" class="wr-f">
+  <h3 class="title">Enter your name:</h3>
+  <input type="text" class="name" placeholder="Name1" [(ngModel)]="name1" />
+  <button class="btn" (click)="setName(name1)">Enter</button>
+</div>
+
+<div *ngIf="showSetIcon" class="wr-f">
+  <h3 class="title">Chose your icon:</h3>
+  <div class="cell cellX" (click)="setIcon('X')">X</div>
+  <div class="cell cellO" (click)="setIcon('O')">O</div>
+</div>
+
+<div *ngIf="showSetName2" class="wr-f">
+  <h3 class="title">Player2, Enter your name:</h3>
+  <input type="text" class="name" placeholder="Name2" [(ngModel)]="name2" />
+  <button class="btn" (click)="setName2(name2)">Enter</button>
+</div>

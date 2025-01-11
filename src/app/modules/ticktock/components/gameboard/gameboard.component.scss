@@ -1,4 +1,6 @@
 .ticktock {
+  position: relative;
+
   margin: 1rem auto;
   padding: 0.5rem;
 
@@ -56,6 +58,29 @@
 
   border: 0;
   padding: 0;
+}
+
+.winner {
+  display: none;
+
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+
+  justify-content: center;
+  align-items: center;
+
+  color: #000;
+}
+
+.block {
+  background-color: white;
+  padding: 1em;
+  border-radius: 20%;
 }
 
 @media (max-width: 400px) {

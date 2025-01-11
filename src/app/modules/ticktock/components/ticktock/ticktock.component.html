@@ -1,15 +1,22 @@
 <div class="wr-f">
-  <div *ngIf="showStart" class="start">
+  <div *ngIf="showStart">
     <app-start-game (showChose)="getShowChose()"></app-start-game>
   </div>
 
-  <div *ngIf="showChose" class="chose">
+  <div *ngIf="showChose">
     <app-game-style
-      (outputShowGamePad)="getShowGamePad($event)"
+      (outputShowNameIcon)="getShowNameIcon($event)"
     ></app-game-style>
   </div>
 
-  <div *ngIf="showGamePad" class="game-pad">
+  <div *ngIf="showNameIcon">
+    <app-name-icon
+      [gameStyleInp]="gamestyle"
+      (outputShowGamePad)="getShowGamePad()"
+    ></app-name-icon>
+  </div>
+
+  <div *ngIf="showGamePad">
     <app-gameboard></app-gameboard>
   </div>
 </div>

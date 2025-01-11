@@ -9,18 +9,24 @@ import { Component } from '@angular/core';
 export class TicktockComponent {
   showStart: boolean = true;
   showChose: boolean = false;
+  showNameIcon: boolean = false;
   showGamePad: boolean = false;
 
-  gamestyle: string = 'computer';
+  gamestyle: string = '';
 
   getShowChose(): void {
     this.showStart = false;
     this.showChose = true;
   }
 
-  getShowGamePad(style: string): void {
+  getShowNameIcon(style: string): void {
     this.showChose = false;
-    this.showGamePad = true;
+    this.showNameIcon = true;
     this.gamestyle = style;
+  }
+
+  getShowGamePad() {
+    this.showNameIcon = false;
+    this.showGamePad = true;
   }
 }

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { GameboardComponent } from './components/gameboard/gameboard.component';
 import { GameStyleComponent } from './components/game-style/game-style.component';
 import { StartGameComponent } from './components/start-game/start-game.component';
+import { NameIconComponent } from './components/name-icon/name-icon.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { StartGameComponent } from './components/start-game/start-game.component
     GameboardComponent,
     GameStyleComponent,
     StartGameComponent,
+    NameIconComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [TicktockComponent],

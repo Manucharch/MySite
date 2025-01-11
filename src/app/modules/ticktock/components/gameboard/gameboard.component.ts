@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { TicktockService } from '../../services/ticktock.service';
 import { playerInterface } from '../../types/player.interface';
 
@@ -36,41 +36,17 @@ export class GameboardComponent implements OnInit {
     placedIcons: [],
   };
 
-  activePlayer!: playerInterface;
-
-  gameStarted: boolean = false;
-
-  startNewGame: boolean = false;
+  activePlayer = signal<playerInterface>(this.player1);
 
   constructor(private service: TicktockService) {}
 
   ngOnInit(): void {
-    this.service.activePlayer.set(this.player1);
-  }
-
-  startGame(): void {
-    this.clearGamePad();
-    this.startNewGame = true;
-  }
-
-  getPlayerInfo(player: playerInterface): void {
-    this.player1 = player;
-
-    this.player2 = {
-      id: '2',
-      icon: this.player1.icon === 'X' ? 'O' : 'X',
-      name: 'Player 2',
-      placedIcons: [],
-    };
-
-    this.service.activePlayer.set(this.player2);
+    this.player1 = this.service.player1();
+    this.player2 = this.service.player2();
+    this.activePlayer = this.service.activePlayer;
   }
 
   makeMove(row: string, column: string): void {
-    if (!this.startNewGame) {
-      return;
-    }
-
     const element = document.getElementById(
       `${row}${column}svg`
     ) as HTMLElement;
@@ -79,21 +55,12 @@ export class GameboardComponent implements OnInit {
       return;
     }
 
-    if (!this.gameStarted) {
-      const el = document.getElementById(`${row}${column}`) as HTMLElement;
-      if (el) {
-        el.style.display = 'flex';
-      }
-    }
+    element.innerHTML =
+      this.service.activePlayer().icon === 'X'
+        ? this.service.svgStringX
+        : this.service.svgStringO;
 
-    if (this.gameStarted) {
-      element.innerHTML =
-        this.service.activePlayer().icon === 'X'
-          ? this.service.svgStringX
-          : this.service.svgStringO;
-    }
-
-    this.service.activePlayer().id == '1'
+    this.activePlayer().id == '1'
       ? this.player1.placedIcons.push(`${row}${column}`)
       : this.player2.placedIcons.push(`${row}${column}`);
 
@@ -111,26 +78,26 @@ export class GameboardComponent implements OnInit {
         }
       }
 
-      // let els = document.querySelectorAll('.pad');
+      (document.getElementById('winner') as HTMLElement).style.display = 'flex';
 
-      // els.forEach((el) => {
-      //   el.innerHTML =
-      //     this.service.activePlayer().icon === 'X'
-      //       ? this.service.svgStringX
-      //       : this.service.svgStringO;
-      // });
+      this.activePlayer().icon == 'X'
+        ? ((
+            document.getElementById('winner') as HTMLElement
+          ).style.backgroundColor = 'rgba(255, 0, 0, 0.8)')
+        : ((
+            document.getElementById('winner') as HTMLElement
+          ).style.backgroundColor = 'rgba(0, 0, 255, 0.8)');
 
-      this.startNewGame = false;
+      this.activePlayer().icon == 'X'
+        ? ((document.getElementById('active-name') as HTMLElement).style.color =
+            'red')
+        : ((document.getElementById('active-name') as HTMLElement).style.color =
+            'blue');
+
+      return;
     }
 
     this.switchPlayers();
-
-    // console.log('active player - ' + this.service.activePlayer().name);
-
-    // console.log('player1 - ' + JSON.stringify(this.player1));
-    // console.log('player2 - ' + JSON.stringify(this.player2));
-
-    this.gameStarted = true;
   }
 
   switchPlayers() {
@@ -151,34 +118,5 @@ export class GameboardComponent implements OnInit {
     }
 
     return result;
-  }
-
-  clearGamePad(): void {
-    for (let i = 1; i <= this.dimension.length; i++) {
-      for (let j = 1; j <= this.dimension.length; j++) {
-        let id = `${i}${j}svg`;
-
-        let element = document.getElementById(id) as HTMLElement;
-
-        element.innerHTML = '';
-      }
-    }
-
-    this.player1 = {
-      id: '',
-      icon: '',
-      name: '',
-      placedIcons: [],
-    };
-    this.player2 = {
-      id: '',
-      icon: '',
-      name: '',
-      placedIcons: [],
-    };
-
-    this.gameStarted = false;
-
-    this.startNewGame = false;
   }
 }

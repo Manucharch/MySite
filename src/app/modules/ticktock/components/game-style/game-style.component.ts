@@ -7,13 +7,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './game-style.component.scss',
 })
 export class GameStyleComponent {
-  @Output() outputShowGamePad: EventEmitter<string> = new EventEmitter();
+  @Output() outputShowNameIcon: EventEmitter<string> = new EventEmitter();
 
   gameStyle: string = 'player';
 
   setGameStyle(style: string): void {
     this.gameStyle = style;
 
-    this.outputShowGamePad.emit(this.gameStyle);
+    this.outputShowNameIcon.emit(this.gameStyle);
   }
 }
