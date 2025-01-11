@@ -1,13 +1,17 @@
+.wr-f{
+  flex-direction: column;
+}
+
 .ticktock {
   position: relative;
 
   margin: 1rem auto;
-  padding: 0.5rem;
+  padding: .5em;
 
   border: 2px solid #000;
 
   display: grid;
-  gap: 0.5rem;
+  gap: 0.5em;
   grid-template-areas:
     ". . ."
     ". . ."
@@ -37,30 +41,7 @@
   background-color: #bdbdbd;
 }
 
-.shoeChose {
-  display: none;
-
-  width: 80%;
-  height: 65%;
-
-  align-items: center;
-  justify-content: space-between;
-
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  background-color: burlywood;
-
-  font-size: 2rem;
-
-  border: 0;
-  padding: 0;
-}
-
-.winner {
+.winner, .tie {
   display: none;
 
   position: absolute;
@@ -70,6 +51,10 @@
 
   top: 0;
   left: 0;
+
+  background-color: rgba(222, 184, 135, 0.8);
+
+  flex-direction: column;
 
   justify-content: center;
   align-items: center;
@@ -83,9 +68,22 @@
   border-radius: 20%;
 }
 
+.restart{
+  margin: 1em 0;
+  width: 80%;
+
+  background-color: white;
+}
+
 @media (max-width: 400px) {
   .item {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
+
+  }
+
+  .ticktock{
+    padding: .15em;
+    gap: .15em;
   }
 }

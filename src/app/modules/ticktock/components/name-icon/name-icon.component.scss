@@ -36,16 +36,25 @@
   border: 1px solid #000;
 }
 
+.cellX{
+  color: red;
+}
+
+.cellO{
+  color: blue;
+}
+
 .cell:hover {
   cursor: pointer;
   color: white;
 }
 
 .cellX:hover {
+  color: white;
   background-color: red;
 }
 
 .cellO:hover {
-  cursor: pointer;
+  color: white;
   background-color: blue;
 }

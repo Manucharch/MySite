@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, signal } from '@angular/core';
 import { TicktockService } from '../../services/ticktock.service';
 import { playerInterface } from '../../types/player.interface';
 
@@ -9,6 +9,8 @@ import { playerInterface } from '../../types/player.interface';
   styleUrl: './gameboard.component.scss',
 })
 export class GameboardComponent implements OnInit {
+  @Output() endGameOutput: EventEmitter<string> = new EventEmitter();
+
   dimension: string[] = ['1', '2', '3'];
 
   winingLines: string[][] = [
@@ -97,6 +99,13 @@ export class GameboardComponent implements OnInit {
       return;
     }
 
+
+    if(this.checkIfTie()){
+      (document.getElementById('tie') as HTMLElement).style.display = 'flex';
+
+      return;
+    }
+
     this.switchPlayers();
   }
 
@@ -119,4 +128,56 @@ export class GameboardComponent implements OnInit {
 
     return result;
   }
+
+
+  checkIfTie(): boolean {
+
+    for (let j = 1; j <= this.dimension.length; j++) {
+      for (let index = 1; index <= this.dimension.length; index++) {
+        const element = document.getElementById(
+          `${j}${index}svg`
+        ) as HTMLElement;
+
+        if (!element.innerHTML) {
+          return false;
+        }
+      }
+    }
+
+    
+
+    return true;
+  }
+
+
+  clearGamePad(): void {
+    for (let i = 1; i <= this.dimension.length; i++) {
+      for (let j = 1; j <= this.dimension.length; j++) {
+        let id = `${i}${j}svg`;
+        let element = document.getElementById(id) as HTMLElement;
+        element.innerHTML = '';
+      }
+    }
+  }
+
+
+  getEndGame(flag: string): void{
+    // this.clearGamePad();
+
+    this.service.player1.update((prev) => ({ ...prev, placedIcons: [] }));
+    this.service.player2.update((prev) => ({ ...prev, placedIcons: [] }));
+    this.service.activePlayer.set(this.service.player1());
+
+    this.player1 = this.service.player1();
+    this.player2 = this.service.player2();
+
+    if(flag === 'restart'){
+      this.clearGamePad();
+
+      return;
+    }
+    
+    this.endGameOutput.emit(flag)
+  }
+
 }

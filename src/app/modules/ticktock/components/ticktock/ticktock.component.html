@@ -17,6 +17,6 @@
   </div>
 
   <div *ngIf="showGamePad">
-    <app-gameboard></app-gameboard>
+    <app-gameboard (endGameOutput)="getEndGame($event)"></app-gameboard>
   </div>
 </div>

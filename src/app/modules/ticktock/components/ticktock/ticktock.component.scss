@@ -1,8 +1,8 @@
 .wr-f {
-  margin: 1em auto;
+  margin: 0 auto;
   padding: 1em 1em;
   width: clamp(250px, 100%, 600px);
-  height: clamp(150px, 100vh, 400px);
+  // height: clamp(150px, 100vh, 400px);
 
   background-color: bisque;
 }

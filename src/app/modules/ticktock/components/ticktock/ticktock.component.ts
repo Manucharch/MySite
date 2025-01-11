@@ -29,4 +29,13 @@ export class TicktockComponent {
     this.showNameIcon = false;
     this.showGamePad = true;
   }
+
+  getEndGame(flag: string): void{
+
+    if(flag === 'quit'){
+      this.showGamePad = false;
+      this.showStart = true
+    }
+    
+  }
 }

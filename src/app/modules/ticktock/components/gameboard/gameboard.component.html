@@ -1,9 +1,10 @@
-<div class="flex-wrapper">
+<div class="wr-f">
+  <div class="move"><p>Your move - <b>{{activePlayer().name}}</b></p></div>
   <div class="ticktock" id="pad">
     @for (row of dimension; track $index; let i = $index) { @for (column of
     dimension; track $index; let j = $index) {
-    <div class="item flex-wrapper" (click)="makeMove(row, column)">
-      <div class="flex-wrapper" id="{{ row + column }}svg"></div>
+    <div class="item wr-f" (click)="makeMove(row, column)">
+      <div class="wr-f" id="{{ row + column }}svg"></div>
     </div>
     } }
 
@@ -14,6 +15,15 @@
         </h2>
         <h3>You Win!!!</h3>
       </div>
+      <div class="restart"><app-restart (gameEndOutput)="getEndGame($event)"></app-restart></div>
+      
+    </div>
+
+    <div class="tie" id="tie">
+      <div class="block">
+        Game is tied
+      </div>
+      <div class="restart"><app-restart (gameEndOutput)="getEndGame($event)"></app-restart></div>
     </div>
   </div>
 </div>

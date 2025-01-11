@@ -1,0 +1,18 @@
+.wr-f{
+    padding: .5em 1em;
+}
+.restart, .quit{
+    flex: 2;
+
+border: 2px solid red;
+}
+
+.restart:hover, .quit:hover{
+    cursor: pointer;
+
+    background-color: aqua;
+}
+
+.or{
+    flex: 1;
+}
