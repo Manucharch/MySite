@@ -3,6 +3,7 @@
   padding: 1em 1em;
   width: clamp(250px, 100%, 600px);
   // height: clamp(150px, 100vh, 400px);
+  min-height: 400px;
 
   background-color: bisque;
 }
