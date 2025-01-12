@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, signal } from '@angular/core';
+import { Component, computed, EventEmitter, OnInit, Output, signal } from '@angular/core';
 import { TicktockService } from '../../services/ticktock.service';
 import { playerInterface } from '../../types/player.interface';
 
@@ -24,22 +24,16 @@ export class GameboardComponent implements OnInit {
     ['13', '22', '31'],
   ];
 
-  
+  playerName = computed(() => this.service.activePlayer().name);
 
-  activePlayer = signal<playerInterface>( {
-    id: '',
-    icon: '',
-    name: '',
-    placedIcons: [],
-  });
 
   constructor(private service: TicktockService) {}
 
   ngOnInit(): void {
-    this.activePlayer = this.service.activePlayer;
   }
 
   makeMove(row: string, column: string): void {
+
 
     const element = document.getElementById(
       `${row}${column}svg`
@@ -54,7 +48,7 @@ export class GameboardComponent implements OnInit {
         ? this.service.svgStringX
         : this.service.svgStringO;
 
-    this.activePlayer().id == '1'
+    this.service.activePlayer().id == '1'
       ? this.service.player1.update((prev) => ({...prev, placedIcons: [...prev.placedIcons, `${row}${column}`]}))
       : this.service.player2.update((prev) => ({...prev, placedIcons: [...prev.placedIcons, `${row}${column}`]}))
 
@@ -74,7 +68,7 @@ export class GameboardComponent implements OnInit {
 
       (document.getElementById('winner') as HTMLElement).style.display = 'flex';
 
-      this.activePlayer().icon == 'X'
+      this.service.activePlayer().icon == 'X'
         ? ((
             document.getElementById('winner') as HTMLElement
           ).style.backgroundColor = 'rgba(255, 0, 0, 0.8)')
@@ -82,7 +76,7 @@ export class GameboardComponent implements OnInit {
             document.getElementById('winner') as HTMLElement
           ).style.backgroundColor = 'rgba(0, 0, 255, 0.8)');
 
-      this.activePlayer().icon == 'X'
+      this.service.activePlayer().icon == 'X'
         ? ((document.getElementById('active-name') as HTMLElement).style.color =
             'red')
         : ((document.getElementById('active-name') as HTMLElement).style.color =
