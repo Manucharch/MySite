@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-tictoc',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './tictoc.component.html',
   styleUrl: './tictoc.component.scss',
 })
-export class TictocComponent {}
+export class TictocComponent {
+  startGame = signal<boolean>(true);
+}

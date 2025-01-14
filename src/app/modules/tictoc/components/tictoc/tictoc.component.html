@@ -1,1 +1,9 @@
 <p>tictoc works!</p>
+
+<div class="tictoc-board">
+  <div *ngIf="startGame()" class="start-button" (click)="startGame.set(false)">
+    Start Game
+  </div>
+
+  <app-game-info *ngIf="!startGame()"></app-game-info>
+</div>

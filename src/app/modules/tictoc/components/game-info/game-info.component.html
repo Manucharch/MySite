@@ -1,0 +1,70 @@
+<div class="game-info">
+  <h3>{{ title() }}</h3>
+  <div *ngIf="setStyle()" class="chose">
+    <div class="radio-button">
+      <label for="player">Play VS Friend</label>
+      <input
+        class="radio-input"
+        [(ngModel)]="gameStyle"
+        type="radio"
+        name="chose"
+        id="player"
+        value="1"
+        (ngModelChange)="setGameStyle()"
+      />
+    </div>
+    <hr />
+    <div class="radio-button">
+      <label for="computer">Play VS Computer</label>
+      <input
+        class="radio-input"
+        [(ngModel)]="gameStyle"
+        type="radio"
+        name="chose"
+        id="computer"
+        value="2"
+        (ngModelChange)="setGameStyle()"
+      />
+    </div>
+  </div>
+
+  <div *ngIf="setName()" class="set-name">
+    <input
+      [(ngModel)]="player1Name"
+      class="name-input"
+      type="text"
+      placeholder="Player1"
+      (focus)="selectAll($event)"
+      (click)="selectAll($event)"
+    />
+
+    <h3>Chose your icon:</h3>
+
+    <div class="icons">
+      <div class="radio-button">
+        <label class="icon-label icon-labelX" for="X"><p>X</p></label>
+        <input
+          class="radio-input"
+          [(ngModel)]="player1Icon"
+          type="radio"
+          name="chose"
+          id="X"
+          value="X"
+        />
+      </div>
+      <div class="radio-button">
+        <label class="icon-label icon-labelO" for="O"><p>O</p></label>
+        <input
+          class="radio-input"
+          [(ngModel)]="player1Icon"
+          type="radio"
+          name="chose"
+          id="O"
+          value="O"
+        />
+      </div>
+    </div>
+
+    <div class="set-name-button" (click)="setPlayer1Name()">OK</div>
+  </div>
+</div>

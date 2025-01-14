@@ -119,10 +119,10 @@ strong {
   font-size: var(--fs-h3);
 }
 
-:focus {
-  outline: 3px solid var(--clr-accent);
-  outline-offset: 3px;
-}
+// :focus {
+//   outline: 3px solid var(--clr-accent);
+//   outline-offset: 3px;
+// }
 
 html {
   scroll-behavior: smooth;

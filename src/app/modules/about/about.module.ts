@@ -12,7 +12,10 @@ const routes: Routes = [
   {
     path: '',
     component: AboutComponent,
-    children: [{ path: 'tictoc', component: TictocComponent }],
+  },
+  {
+    path: 'tictoc',
+    component: TictocComponent,
   },
 ];
 

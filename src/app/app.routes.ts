@@ -33,9 +33,9 @@ export const routes: Routes = [
       import('./modules/more/more.module').then((c) => c.MoreModule),
     // children: [],
   },
-  {
-    path: '**',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'home',
+  //   pathMatch: 'full',
+  // },
 ];

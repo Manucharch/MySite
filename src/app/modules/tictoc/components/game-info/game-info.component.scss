@@ -1,0 +1,144 @@
+.chose {
+  display: flex;
+
+  gap: 2em;
+
+  justify-content: space-around;
+}
+
+h3 {
+  padding: 0.5em;
+  box-shadow: var(--bs);
+
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 255, 0.7),
+    rgba(255, 0, 0, 0.7)
+  );
+
+  color: white;
+
+  border-radius: 2em;
+  width: auto;
+
+  &:hover {
+    cursor: context-menu;
+    scale: 1.2;
+  }
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.radio-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+label {
+  font-weight: bolder;
+
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    color: white;
+  }
+}
+
+.radio-input {
+  margin: 0;
+
+  width: 1.3rem;
+  height: 1.3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.set-name {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+.name-input {
+  height: 2.5em;
+  text-align: center;
+
+  border-radius: 1em;
+
+  background-color: bisque;
+}
+
+.set-name-button {
+  width: 5em;
+  height: 2em;
+
+  line-height: 2;
+  text-align: center;
+
+  color: white;
+  font-weight: bolder;
+
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 255, 0.7),
+    rgba(255, 0, 0, 0.7)
+  );
+
+  border-radius: 0.5em;
+
+  &:hover {
+    cursor: pointer;
+    scale: 1.2;
+
+    box-shadow: var(--bs);
+  }
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+
+  gap: 4em;
+}
+
+.icon-label {
+  width: 3em;
+  height: 3em;
+  //   padding: 0.5em;
+  border-radius: 1em;
+  background-color: red;
+  line-height: 2;
+
+  font-size: 1.3rem;
+
+  &:hover {
+    cursor: pointer;
+    scale: 1.2;
+
+    box-shadow: var(--bs);
+  }
+}
+
+.icon-labelO {
+  background-color: blue;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+  font-size: 2rem;
+  height: 100%;
+  color: white;
+}

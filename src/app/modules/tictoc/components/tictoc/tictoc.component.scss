@@ -1,0 +1,43 @@
+.tictoc-board {
+  display: flex;
+  width: clamp(250px, 100%, 600px);
+
+  justify-content: center;
+  align-items: center;
+
+  margin: 1em auto;
+  padding: 1em;
+
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.7),
+    rgba(0, 0, 255, 0.7)
+  );
+
+  border-radius: 2em;
+}
+
+.start-button {
+  width: 40%;
+  min-width: 160px;
+
+  margin: 3em auto;
+
+  padding: 1em;
+
+  text-align: center;
+
+  background-color: azure;
+
+  border-radius: 1em;
+}
+
+.start-button:hover {
+  cursor: pointer;
+
+  box-shadow: var(--bs);
+
+  scale: 1.2;
+
+  font-weight: bolder;
+}

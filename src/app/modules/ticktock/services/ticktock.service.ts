@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { playerInterface } from '../types/player.interface';
+import { playerInterface } from '../../tictoc/types/player.interface';
 
 @Injectable({
   providedIn: 'root',

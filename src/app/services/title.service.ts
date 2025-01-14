@@ -44,7 +44,7 @@ export class TitleService {
       case '/more':
         return 'header.more';
       default:
-        return 'defaultTitle'; // Default title if no match
+        return 'WebKey'; // Default title if no match
     }
   }
 }

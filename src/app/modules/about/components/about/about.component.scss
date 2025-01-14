@@ -17,13 +17,59 @@
 }
 
 .tictoc {
-  // width: 100%;
+  position: relative;
+
+  min-width: 250px;
+
   background-color: rgba(255, 0, 0, 0.5);
 
-  padding: 1em;
+  padding: 0.5em;
 
   border: 3px solid blue;
   border-radius: 1em;
+
+  // background-image: url("/img/backgrounds/XO.PNG");
+
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: contain;
+
+  gap: 2em;
+}
+
+.tictoc::after,
+.tictoc::before {
+  position: absolute;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-size: 2.5rem;
+  font-weight: bolder;
+
+  text-shadow: 0.1em 0.01em #141414;
+}
+
+.tictoc::after {
+  content: "X";
+
+  top: -10%;
+  right: 5%;
+
+  color: red;
+}
+
+.tictoc::before {
+  content: "O";
+
+  bottom: -10%;
+  left: 5%;
+
+  color: blue;
 }
 
 .tic {
@@ -49,12 +95,6 @@
     font-weight: bolder;
     scale: 1.2;
 
-    .tic {
-      color: blue;
-    }
-
-    .toc {
-      color: red;
-    }
+    box-shadow: var(--bs);
   }
 }

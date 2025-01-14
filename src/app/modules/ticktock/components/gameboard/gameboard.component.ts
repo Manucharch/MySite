@@ -1,6 +1,13 @@
-import { Component, computed, EventEmitter, OnInit, Output, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
 import { TicktockService } from '../../services/ticktock.service';
-import { playerInterface } from '../../types/player.interface';
+import { playerInterface } from '../../../tictoc/types/player.interface';
 
 @Component({
   selector: 'app-gameboard',
@@ -26,15 +33,11 @@ export class GameboardComponent implements OnInit {
 
   playerName = computed(() => this.service.activePlayer().name);
 
-
   constructor(private service: TicktockService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   makeMove(row: string, column: string): void {
-
-
     const element = document.getElementById(
       `${row}${column}svg`
     ) as HTMLElement;
@@ -49,10 +52,22 @@ export class GameboardComponent implements OnInit {
         : this.service.svgStringO;
 
     this.service.activePlayer().id == '1'
-      ? this.service.player1.update((prev) => ({...prev, placedIcons: [...prev.placedIcons, `${row}${column}`]}))
-      : this.service.player2.update((prev) => ({...prev, placedIcons: [...prev.placedIcons, `${row}${column}`]}))
+      ? this.service.player1.update((prev) => ({
+          ...prev,
+          placedIcons: [...prev.placedIcons, `${row}${column}`],
+        }))
+      : this.service.player2.update((prev) => ({
+          ...prev,
+          placedIcons: [...prev.placedIcons, `${row}${column}`],
+        }));
 
-    if (this.checkWinner(this.service.activePlayer().id == '1' ? this.service.player1() : this.service.player2())) {
+    if (
+      this.checkWinner(
+        this.service.activePlayer().id == '1'
+          ? this.service.player1()
+          : this.service.player2()
+      )
+    ) {
       for (let i = 1; i <= this.dimension.length; i++) {
         for (let j = 1; j <= this.dimension.length; j++) {
           let id = `${i}${j}svg`;
@@ -85,8 +100,7 @@ export class GameboardComponent implements OnInit {
       return;
     }
 
-
-    if(this.checkIfTie()){
+    if (this.checkIfTie()) {
       (document.getElementById('tie') as HTMLElement).style.display = 'flex';
 
       return;
@@ -97,7 +111,9 @@ export class GameboardComponent implements OnInit {
 
   switchPlayers() {
     this.service.activePlayer.set(
-      this.service.activePlayer().id == '1' ? this.service.player2() : this.service.player1()
+      this.service.activePlayer().id == '1'
+        ? this.service.player2()
+        : this.service.player1()
     );
   }
 
@@ -115,9 +131,7 @@ export class GameboardComponent implements OnInit {
     return result;
   }
 
-
   checkIfTie(): boolean {
-
     for (let j = 1; j <= this.dimension.length; j++) {
       for (let index = 1; index <= this.dimension.length; index++) {
         const element = document.getElementById(
@@ -130,11 +144,8 @@ export class GameboardComponent implements OnInit {
       }
     }
 
-    
-
     return true;
   }
-
 
   clearGamePad(): void {
     for (let i = 1; i <= this.dimension.length; i++) {
@@ -146,21 +157,19 @@ export class GameboardComponent implements OnInit {
     }
   }
 
-
-  getEndGame(flag: string): void{
+  getEndGame(flag: string): void {
     // this.clearGamePad();
 
     this.service.player1.update((prev) => ({ ...prev, placedIcons: [] }));
     this.service.player2.update((prev) => ({ ...prev, placedIcons: [] }));
     this.service.activePlayer.set(this.service.player1());
 
-    if(flag === 'restart'){
+    if (flag === 'restart') {
       this.clearGamePad();
 
       return;
     }
-    
-    this.endGameOutput.emit(flag)
-  }
 
+    this.endGameOutput.emit(flag);
+  }
 }
