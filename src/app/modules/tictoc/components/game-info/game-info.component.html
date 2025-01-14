@@ -29,6 +29,7 @@
   </div>
 
   <div *ngIf="setName()" class="set-name">
+    <label for="name1">Select name:</label>
     <input
       [(ngModel)]="player1Name"
       class="name-input"
@@ -36,9 +37,9 @@
       placeholder="Player1"
       (focus)="selectAll($event)"
       (click)="selectAll($event)"
+      id="name1"
     />
-
-    <h3>Chose your icon:</h3>
+    <label>Select icon:</label>
 
     <div class="icons">
       <div class="radio-button">
@@ -47,7 +48,7 @@
           class="radio-input"
           [(ngModel)]="player1Icon"
           type="radio"
-          name="chose"
+          name="icon"
           id="X"
           value="X"
         />
@@ -58,7 +59,7 @@
           class="radio-input"
           [(ngModel)]="player1Icon"
           type="radio"
-          name="chose"
+          name="icon"
           id="O"
           value="O"
         />

@@ -20,7 +20,7 @@ export class GameInfoComponent {
   gameStyle: string = '';
 
   setGameStyle() {
-    this.title.set('Player 1, chose your name:');
+    this.title.set('Player 1');
     this.setStyle.set(false);
     this.setName.set(true);
   }
@@ -31,7 +31,6 @@ export class GameInfoComponent {
   }
 
   setPlayer1Name(): void {
-    this.title.set('Player 1, chose your icon:');
     this.setName.set(false);
   }
 }
