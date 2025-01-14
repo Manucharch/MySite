@@ -1,0 +1,60 @@
+.about {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-around;
+}
+
+.about__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+  min-width: 250px;
+
+  padding: 0.5em 1em;
+}
+
+.tictoc {
+  // width: 100%;
+  background-color: rgba(255, 0, 0, 0.5);
+
+  padding: 1em;
+
+  border: 3px solid blue;
+  border-radius: 1em;
+}
+
+.tic {
+  color: red;
+}
+
+.toc {
+  color: blue;
+}
+
+.play {
+  width: 40%;
+  background-color: rgb(29, 168, 29);
+
+  border-radius: 1em;
+
+  text-align: center;
+
+  float: right;
+
+  &:hover {
+    cursor: pointer;
+    font-weight: bolder;
+    scale: 1.2;
+
+    .tic {
+      color: blue;
+    }
+
+    .toc {
+      color: red;
+    }
+  }
+}

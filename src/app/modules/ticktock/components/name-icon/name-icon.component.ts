@@ -25,6 +25,10 @@ export class NameIconComponent {
     this.service.player1.update((prev) => ({ ...prev, name: name }));
     this.showSetName = false;
     this.showSetIcon = true;
+
+    if ((this.gameStyleInp = 'computer')) {
+      this.service.player2.update((prev) => ({ ...prev, name: 'Computer' }));
+    }
   }
 
   setName2(name: string): void {

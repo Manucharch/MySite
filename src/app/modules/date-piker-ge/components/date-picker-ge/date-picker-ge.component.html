@@ -1,70 +1,74 @@
-<div class="picker">
-  <div class="input">
-    <div class="date-string">
-      <input
-        [(ngModel)]="dateInput.day"
-        type="text"
-        class="cell day"
-        id="day"
-        (focus)="selectAll($event)"
-        (click)="selectAll($event)"
-        (blur)="validateDay(dayInput); updateDate('day')"
-        pattern="^([1-9]|[12][0-9]|3[01])$"
-        maxlength="2"
-        required
-        #dayInput="ngModel"
-      />
+<div class="wr-f">
+  <h2>Date Picker</h2>
 
-      <input
-        [(ngModel)]="dateInput.month"
-        type="text"
-        class="cell month"
-        id="month"
-        (focus)="selectAll($event)"
-        (click)="selectAll($event)"
-        (blur)="validateDay(dayInput); updateDate('day')"
-      />
+  <div class="picker">
+    <div class="input">
+      <div class="date-string">
+        <input
+          [(ngModel)]="dateInput.day"
+          type="text"
+          class="cell day"
+          id="day"
+          (focus)="selectAll($event)"
+          (click)="selectAll($event)"
+          (blur)="validateDay(dayInput); updateDate('day')"
+          pattern="^([1-9]|[12][0-9]|3[01])$"
+          maxlength="2"
+          required
+          #dayInput="ngModel"
+        />
 
-      <input
-        [(ngModel)]="dateInput.year"
-        type="text"
-        class="cell year"
-        id="year"
-        (focus)="selectAll($event)"
-        (click)="selectAll($event)"
-        (blur)="validateDay(dayInput); updateDate('day')"
-      />
-    </div>
+        <input
+          [(ngModel)]="dateInput.month"
+          type="text"
+          class="cell month"
+          id="month"
+          (focus)="selectAll($event)"
+          (click)="selectAll($event)"
+          (blur)="validateDay(dayInput); updateDate('day')"
+        />
 
-    <div class="toggle" (click)="toggleCalendar($event)">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        fill="currentColor"
-        class="bi bi-calendar-range"
-        viewBox="0 0 16 16"
+        <input
+          [(ngModel)]="dateInput.year"
+          type="text"
+          class="cell year"
+          id="year"
+          (focus)="selectAll($event)"
+          (click)="selectAll($event)"
+          (blur)="validateDay(dayInput); updateDate('day')"
+        />
+      </div>
+
+      <div class="toggle" (click)="toggleCalendar($event)">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-calendar-range"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1M1 9h4a1 1 0 0 1 0 2H1z"
+          />
+          <path
+            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
+          />
+        </svg>
+      </div>
+
+      <div
+        class="calendar"
+        [ngClass]="{
+          'calendar-folded': isFolded,
+          'calendar-expanded': !isFolded
+        }"
       >
-        <path
-          d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1M1 9h4a1 1 0 0 1 0 2H1z"
-        />
-        <path
-          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
-        />
-      </svg>
-    </div>
-
-    <div
-      class="calendar"
-      [ngClass]="{
-        'calendar-folded': isFolded,
-        'calendar-expanded': !isFolded
-      }"
-    >
-      <app-calendar
-        (dateFromCalendarOutput)="getDatesFromCAlendar($event)"
-        (closeCalendarOutput)="isFolded = true"
-      ></app-calendar>
+        <app-calendar
+          (dateFromCalendarOutput)="getDatesFromCAlendar($event)"
+          (closeCalendarOutput)="isFolded = true"
+        ></app-calendar>
+      </div>
     </div>
   </div>
 </div>

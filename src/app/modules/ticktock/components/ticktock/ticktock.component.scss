@@ -1,9 +1,8 @@
 .wr-f {
   margin: 0 auto;
   padding: 1em 1em;
-  width: clamp(250px, 100%, 600px);
-  // height: clamp(150px, 100vh, 400px);
-  min-height: 400px;
+  width: clamp(350px, 100%, 600px);
+  // min-height: 250px;
 
   background-color: bisque;
 }

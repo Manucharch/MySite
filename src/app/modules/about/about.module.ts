@@ -1,13 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutComponent } from './components/about/about.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, RouterOutlet, Routes } from '@angular/router';
 import { TicktockModule } from '../ticktock/ticktock.module';
+import { ClockComponent } from '../../components/clock/clock.component';
+import { DatePikerGeModule } from '../date-piker-ge/date-piker-ge.module';
+import { TictocModule } from '../tictoc/tictoc.module';
+import { TictocComponent } from '../tictoc/components/tictoc/tictoc.component';
 
-const routes: Routes = [{ path: '', component: AboutComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: AboutComponent,
+    children: [{ path: 'tictoc', component: TictocComponent }],
+  },
+];
 
 @NgModule({
   declarations: [AboutComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), TicktockModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    RouterOutlet,
+    TicktockModule,
+    ClockComponent,
+    DatePikerGeModule,
+    TictocModule,
+  ],
 })
 export class AboutModule {}
