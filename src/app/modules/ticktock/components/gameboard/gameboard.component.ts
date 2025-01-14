@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, signal } from '@angular/core';
+import { Component, computed, EventEmitter, OnInit, Output, signal } from '@angular/core';
 import { TicktockService } from '../../services/ticktock.service';
 import { playerInterface } from '../../types/player.interface';
 
@@ -24,31 +24,17 @@ export class GameboardComponent implements OnInit {
     ['13', '22', '31'],
   ];
 
-  player1: playerInterface = {
-    id: '',
-    icon: '',
-    name: '',
-    placedIcons: [],
-  };
+  playerName = computed(() => this.service.activePlayer().name);
 
-  player2: playerInterface = {
-    id: '',
-    icon: '',
-    name: '',
-    placedIcons: [],
-  };
-
-  activePlayer = signal<playerInterface>(this.player1);
 
   constructor(private service: TicktockService) {}
 
   ngOnInit(): void {
-    this.player1 = this.service.player1();
-    this.player2 = this.service.player2();
-    this.activePlayer = this.service.activePlayer;
   }
 
   makeMove(row: string, column: string): void {
+
+
     const element = document.getElementById(
       `${row}${column}svg`
     ) as HTMLElement;
@@ -62,11 +48,11 @@ export class GameboardComponent implements OnInit {
         ? this.service.svgStringX
         : this.service.svgStringO;
 
-    this.activePlayer().id == '1'
-      ? this.player1.placedIcons.push(`${row}${column}`)
-      : this.player2.placedIcons.push(`${row}${column}`);
+    this.service.activePlayer().id == '1'
+      ? this.service.player1.update((prev) => ({...prev, placedIcons: [...prev.placedIcons, `${row}${column}`]}))
+      : this.service.player2.update((prev) => ({...prev, placedIcons: [...prev.placedIcons, `${row}${column}`]}))
 
-    if (this.checkWinner(this.service.activePlayer())) {
+    if (this.checkWinner(this.service.activePlayer().id == '1' ? this.service.player1() : this.service.player2())) {
       for (let i = 1; i <= this.dimension.length; i++) {
         for (let j = 1; j <= this.dimension.length; j++) {
           let id = `${i}${j}svg`;
@@ -82,7 +68,7 @@ export class GameboardComponent implements OnInit {
 
       (document.getElementById('winner') as HTMLElement).style.display = 'flex';
 
-      this.activePlayer().icon == 'X'
+      this.service.activePlayer().icon == 'X'
         ? ((
             document.getElementById('winner') as HTMLElement
           ).style.backgroundColor = 'rgba(255, 0, 0, 0.8)')
@@ -90,7 +76,7 @@ export class GameboardComponent implements OnInit {
             document.getElementById('winner') as HTMLElement
           ).style.backgroundColor = 'rgba(0, 0, 255, 0.8)');
 
-      this.activePlayer().icon == 'X'
+      this.service.activePlayer().icon == 'X'
         ? ((document.getElementById('active-name') as HTMLElement).style.color =
             'red')
         : ((document.getElementById('active-name') as HTMLElement).style.color =
@@ -111,7 +97,7 @@ export class GameboardComponent implements OnInit {
 
   switchPlayers() {
     this.service.activePlayer.set(
-      this.service.activePlayer() === this.player1 ? this.player2 : this.player1
+      this.service.activePlayer().id == '1' ? this.service.player2() : this.service.player1()
     );
   }
 
@@ -167,9 +153,6 @@ export class GameboardComponent implements OnInit {
     this.service.player1.update((prev) => ({ ...prev, placedIcons: [] }));
     this.service.player2.update((prev) => ({ ...prev, placedIcons: [] }));
     this.service.activePlayer.set(this.service.player1());
-
-    this.player1 = this.service.player1();
-    this.player2 = this.service.player2();
 
     if(flag === 'restart'){
       this.clearGamePad();

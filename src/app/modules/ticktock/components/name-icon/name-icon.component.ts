@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TicktockService } from '../../services/ticktock.service';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-name-icon',
@@ -23,6 +24,9 @@ export class NameIconComponent {
   setName(name: string): void {
     this.name1 = name;
     this.service.player1.update((prev) => ({ ...prev, name: name }));
+    if(this.gameStyleInp == 'computer'){
+      this.service.player2.update((prev) => ({ ...prev, name: 'Computer' }))
+    }
     this.showSetName = false;
     this.showSetIcon = true;
 

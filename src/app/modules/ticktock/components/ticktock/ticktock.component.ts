@@ -20,9 +20,10 @@ export class TicktockComponent {
   }
 
   getShowNameIcon(style: string): void {
+    this.gamestyle = style;
+
     this.showChose = false;
     this.showNameIcon = true;
-    this.gamestyle = style;
   }
 
   getShowGamePad() {
