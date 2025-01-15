@@ -13,7 +13,7 @@ export class GameInfoComponent {
   setName = signal<boolean>(false);
   setName2 = signal<boolean>(false);
 
-  closeInfoOutput = output<void>();
+  closeInfoOutput = output<string>();
 
   player1Name: string = 'Player1';
   player2Name: string = 'Player2';
@@ -50,7 +50,7 @@ export class GameInfoComponent {
         icon: this.player1Icon == 'X' ? 'O' : 'X',
       }));
 
-      this.closeInfoOutput.emit();
+      this.closeInfoOutput.emit('start');
     } else if (this.gameStyle == '1') {
       this.title.set('Player2');
       this.setName2.set(true);
@@ -71,6 +71,30 @@ export class GameInfoComponent {
 
     this.setName2.set(false);
 
-    this.closeInfoOutput.emit();
+    this.closeInfoOutput.emit('start');
+  }
+
+  getQuiteGame(): void {
+    this.closeInfoOutput.emit('end');
+  }
+
+  getGoBack(): void {
+    // title = signal<string>('Chose Game Style:');
+    // setStyle = signal<boolean>(true);
+    // setName = signal<boolean>(false);
+    // setName2 = signal<boolean>(false);
+
+    if (this.setName2()) {
+      this.setName2.set(false);
+
+      this.title.set(this.service.player1().name);
+      this.setName.set(true);
+    } else if (this.setName()) {
+      this.setName.set(false);
+      this.setStyle.set(true);
+      this.title.set('Chose Game Style:');
+    } else if (this.setStyle()) {
+      this.closeInfoOutput.emit('end');
+    }
   }
 }

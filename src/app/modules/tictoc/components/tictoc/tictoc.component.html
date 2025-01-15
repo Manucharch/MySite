@@ -7,8 +7,13 @@
 
   <app-game-info
     *ngIf="showGameInfo"
-    (closeInfoOutput)="getCloseInfo()"
+    (closeInfoOutput)="getCloseInfo($event)"
+    (goBackOutput)="getGoBack()"
   ></app-game-info>
 
-  <app-game-board></app-game-board>
+  <app-game-board
+    *ngIf="showGameBoard"
+    class="game-board"
+    (outpuQuiteGame)="getQuitFromBoard()"
+  ></app-game-board>
 </div>

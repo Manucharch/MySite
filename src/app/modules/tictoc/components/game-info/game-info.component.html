@@ -83,4 +83,10 @@
 
     <div class="set-name-button" (click)="setPlayer2Name()">OK</div>
   </div>
+
+  <app-navigation
+    class="navigation"
+    (backOutput)="getGoBack()"
+    (quiteOutput)="getQuiteGame()"
+  ></app-navigation>
 </div>

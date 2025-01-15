@@ -1,1 +1,26 @@
-<p>game-board works!</p>
+<div class="board">
+  <section class="players">
+    <div class="wr-f">
+      <div
+        [ngClass]="{ red: player1().icon == 'X', blue: player1().icon == 'O' }"
+        class="player1"
+      >
+        {{ player1().name }}
+      </div>
+      <b>VS</b>
+      <div
+        [ngClass]="{ red: player2().icon == 'X', blue: player2().icon == 'O' }"
+        class="player2"
+      >
+        {{ player2().name }}
+      </div>
+    </div>
+  </section>
+  <section class="game-pad">Game</section>
+  <app-navigation
+    class="navigation"
+    (backOutput)="getGoBack()"
+    (quiteOutput)="getQuiteGame()"
+    [buttonTitle]="'Restart'"
+  ></app-navigation>
+</div>

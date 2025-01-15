@@ -16,9 +16,21 @@ export class TictocComponent {
     this.showGameInfo = true;
   }
 
-  getCloseInfo(): void {
-    this.showGameBoard = true;
-    this.gameStarted = true;
+  getCloseInfo(flag: string): void {
+    if (flag == 'start') {
+      this.gameStarted = true;
+
+      this.showGameBoard = true;
+    } else {
+      this.gameStarted = false;
+    }
     this.showGameInfo = false;
   }
+
+  getQuitFromBoard(): void {
+    this.gameStarted = false;
+    this.showGameBoard = false;
+  }
+
+  getGoBack() {}
 }
