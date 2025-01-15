@@ -68,4 +68,19 @@
 
     <div class="set-name-button" (click)="setPlayer1Name()">OK</div>
   </div>
+
+  <div *ngIf="setName2()" class="set-name">
+    <label for="name2">Select name:</label>
+    <input
+      [(ngModel)]="player2Name"
+      class="name-input"
+      type="text"
+      placeholder="Player2"
+      (focus)="selectAll($event)"
+      (click)="selectAll($event)"
+      id="name2"
+    />
+
+    <div class="set-name-button" (click)="setPlayer2Name()">OK</div>
+  </div>
 </div>
