@@ -7,6 +7,7 @@ import { ClockComponent } from '../../components/clock/clock.component';
 import { DatePikerGeModule } from '../date-piker-ge/date-piker-ge.module';
 import { TictocModule } from '../tictoc/tictoc.module';
 import { TictocComponent } from '../tictoc/components/tictoc/tictoc.component';
+import { EarthComponent } from '../../components/earth/earth.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
     ClockComponent,
     DatePikerGeModule,
     TictocModule,
+    EarthComponent,
   ],
 })
 export class AboutModule {}
